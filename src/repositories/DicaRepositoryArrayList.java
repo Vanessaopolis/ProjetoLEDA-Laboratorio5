@@ -7,38 +7,42 @@ import entities.Dica;
 import validators.ValidadorDica;
 
 /**
- * Classe responsável por gerenciar e armazenar as dicas em um repositório.
- * Esta classe permite adicionar e listar dicas.
+ * Classe responsável por gerenciar e armazenar as dicas em um repositório. Esta
+ * classe permite adicionar e listar dicas.
+ * 
+ * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class DicaRepository {
+public class DicaRepositoryArrayList {
 
 	private List<Dica> dicas;
-	
+
 	/**
-     * Cria um novo repositório de dicas.
-     */
-	public DicaRepository() {
+	 * Cria um novo repositório de dicas.
+	 */
+	public DicaRepositoryArrayList() {
 		this.dicas = new ArrayList<>();
 	}
-	
+
 	/**
-     * Adiciona uma dica ao repositório.
-     *
-     * @param dica a dica a ser adicionada
-     * @return o número total de dicas no repositório após a adição ou 0 se a dica não foi adicionada
-     * @throws NullPointerException se a dica for nula
-     */
+	 * Adiciona uma dica ao repositório.
+	 *
+	 * @param dica a dica a ser adicionada
+	 * @return o número total de dicas no repositório se a dica foi adicionada ou -1
+	 *         se a dica não foi adicionada
+	 * @throws NullPointerException se a dica for nula
+	 */
 	public int adicionaDica(Dica dica) {
 		ValidadorDica.validaDica(dica);
-		return (this.dicas.add(dica)) ? this.dicas.size() : 0;
+
+		return (this.dicas.add(dica)) ? this.dicas.size() : -1;
 	}
-	
+
 	/**
-     * Retorna uma lista das dicas como strings.
-     *
-     * @return um array de strings representando as dicas
-     */
+	 * Retorna uma lista das dicas como strings.
+	 *
+	 * @return um array de strings representando as dicas
+	 */
 	public String[] listaDicas() {
 		if (this.dicas.size() == 0) {
 			return new String[0];
@@ -50,12 +54,12 @@ public class DicaRepository {
 		}
 		return lista;
 	}
-	
+
 	/**
-     * Retorna uma lista detalhada das dicas.
-     *
-     * @return um array de strings com os detalhes das dicas
-     */
+	 * Retorna uma lista detalhada das dicas.
+	 *
+	 * @return um array de strings com os detalhes das dicas
+	 */
 	public String[] listaDicasDetalhes() {
 		if (this.dicas.size() == 0) {
 			return new String[0];
@@ -67,7 +71,7 @@ public class DicaRepository {
 		}
 		return lista;
 	}
-	
+
 	/**
 	 * Retorna a representação em string da dica na posição especificada.
 	 *
@@ -78,25 +82,25 @@ public class DicaRepository {
 	public String listaDica(int posicao) {
 		return buscaDica(posicao).toString();
 	}
-	
+
 	/**
-     * Retorna os detalhes da dica na posição especificada.
-     *
-     * @param posicao a posição da dica a ser retornada (1-based)
-     * @return os detalhes da dica
-     * @throws IllegalArgumentException se posicao for inválida
-     */
+	 * Retorna os detalhes da dica na posição especificada.
+	 *
+	 * @param posicao a posição da dica a ser retornada (1-based)
+	 * @return os detalhes da dica
+	 * @throws IllegalArgumentException se posicao for inválida
+	 */
 	public String listaDicaDetalhes(int posicao) {
 		return buscaDica(posicao).exibeDetalhes();
 	}
-	
+
 	/**
-     * Busca e retorna a dica na posição especificada.
-     *
-     * @param posicao a posição da dica a ser buscada (1-based)
-     * @return a dica na posição especificada
-     * @throws IllegalArgumentException se posicao for inválida
-     */
+	 * Busca e retorna a dica na posição especificada.
+	 *
+	 * @param posicao a posição da dica a ser buscada (1-based)
+	 * @return a dica na posição especificada
+	 * @throws IllegalArgumentException se posicao for inválida
+	 */
 	public Dica buscaDica(int posicao) {
 		ValidadorDica.validaPosicao(posicao, this.dicas.size());
 		return this.dicas.get(posicao - 1);

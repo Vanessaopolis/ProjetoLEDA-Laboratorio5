@@ -2,7 +2,7 @@ package controllers;
 
 import entities.Dica;
 import entities.Usuario;
-import repositories.DicaRepository;
+import repositories.DicaRepositoryArrayList;
 
 /**
  * Classe responsável por gerenciar as interações entre os usuários externos e o repositório de dicas.
@@ -11,7 +11,7 @@ import repositories.DicaRepository;
 public class DicaController {
 	
 	private UsuarioController usuarioController;
-	private DicaRepository dicaRepository;
+	private DicaRepositoryArrayList dicaRepository;
 
 	/**
      * Cria um novo controlador de dicas com o controlador de usuários fornecido.
@@ -20,7 +20,7 @@ public class DicaController {
      */
 	public DicaController(UsuarioController usuarioController) {
 		this.usuarioController = usuarioController;
-		this.dicaRepository = new DicaRepository();
+		this.dicaRepository = new DicaRepositoryArrayList();
 	}
 	
 	/**

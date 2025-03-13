@@ -1,7 +1,7 @@
 package controllers;
 
 import entities.Usuario;
-import repositories.UsuarioRepository;
+import repositories.UsuarioRepositoryHashMap;
 
 /**
  * Classe responsável por gerenciar as interações entre os usuários externos e o repositório de usuários.
@@ -9,13 +9,13 @@ import repositories.UsuarioRepository;
 
 public class UsuarioController {
 	
-	private UsuarioRepository usuarioRepository;
+	private UsuarioRepositoryHashMap usuarioRepository;
 	
 	/**
      * Cria um novo controlador de usuário.
      */
 	public UsuarioController() {
-		this.usuarioRepository = new UsuarioRepository();
+		this.usuarioRepository = new UsuarioRepositoryHashMap();
 	}
 	
 	/**

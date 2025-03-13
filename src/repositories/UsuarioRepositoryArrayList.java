@@ -1,0 +1,117 @@
+package repositories;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+
+import entities.Usuario;
+import validators.ValidadorUsuario;
+
+/**
+ * Classe responsável por gerenciar e armazenar os usuários (estudantes) em um
+ * repositório. Esta classe permite adicionar, buscar e listar estudantes, além
+ * de manter a validação de usuários.
+ * 
+ * @author Lorena Nascimento Carvalho, matrícula 123211071
+ * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
+ */
+
+public class UsuarioRepositoryArrayList {
+
+	private ArrayList<Usuario> estudantes;
+
+	/**
+	 * Cria um novo repositório de usuários.
+	 */
+	public UsuarioRepositoryArrayList() {
+		this.estudantes = new ArrayList<Usuario>();
+	}
+
+	/**
+	 * Adiciona um estudante ao repositório.
+	 *
+	 * @param cpf       o cpf do estudante
+	 * @param estudante o objeto a ser adicionado
+	 * @return true se o estudante foi adicionado com sucesso, false se já existe um
+	 *         estudante com o mesmo CPF
+	 * @throws NullPointerException se o estudante for nulo
+	 */
+	public boolean adicionaEstudante(Usuario estudante) {
+		// Adaptado para adicionar o estudante num ArrayList se ele já não estiver
+		// presente.
+		ValidadorUsuario.validaUsuario(estudante);
+		if (this.estudantes.contains(estudante)) {
+			return false;
+		}
+		this.estudantes.add(estudante);
+		return true;
+	}
+
+	/**
+	 * Lista todos os estudantes no repositório como um array de strings.
+	 *
+	 * @return um array de String contendo a representação de todos os estudantes,
+	 *         se existir
+	 */
+	public String[] listaEstudantes() {
+		// Não precisei mexer pois o método já se utilizava de Listas e portanto os
+		// métodos estavam coerentes.
+		if (this.estudantes.size() == 0) {
+			return new String[0];
+		}
+
+		this.estudantes.sort(null);
+		return converteParaArrayDeString(this.estudantes);
+	}
+
+	/**
+	 * Lista todos os estudantes ordenados por bonificação em ordem decrescente.
+	 *
+	 * @return um array de String contendo a representação dos estudantes, ordenados
+	 *         pela bonificação
+	 */
+	public String[] listaEstudantesRankingDicas() {
+		// Esse método transformava o hash map numa List, para conseguir aplicar o sort.
+		// Como agora estudante já é um ArrayList, não precisou.
+		if (this.estudantes.size() == 0) {
+			return new String[0];
+		}
+		this.estudantes.sort(Comparator.comparing(Usuario::getBonificacao).reversed().thenComparing(Usuario::getNome));
+		return converteParaArrayDeString(estudantes);
+	}
+
+	/**
+	 * Busca um estudante no repositório com base no CPF e senha fornecidos.
+	 *
+	 * @param cpf   o cpf do estudante a ser buscado
+	 * @param senha a senha do estudante
+	 * @return o estudante correspondente se encontrado e a senha for válida, null
+	 *         caso contrário
+	 * @throws NullPointerException     se o estudante não for encontrado
+	 * @throws IllegalArgumentException se as credenciais forem inválidas
+	 */
+	public Usuario buscaEstudante(String cpf, String senha) {
+		// Agora esse método varre toda o ArrayList procurando pelo usuário que possua o
+		// CPF requisitado.
+		for (Usuario estudante : this.estudantes) {
+			if (estudante.getCpf().equals(cpf) && validaSenha(estudante, senha)) {
+				return estudante;
+			}
+		}
+		throw new IllegalArgumentException("Usuário ou senha inválidos");
+
+	}
+
+	private boolean validaSenha(Usuario estudante, String senha) {
+		return estudante.validaSenha(senha);
+	}
+
+	private <T> String[] converteParaArrayDeString(Collection<T> colecao) {
+		String[] lista = new String[colecao.size()];
+		int i = 0;
+		for (T elemento : colecao) {
+			lista[i++] = elemento.toString();
+		}
+		return lista;
+	}
+}
