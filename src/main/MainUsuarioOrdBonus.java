@@ -11,18 +11,18 @@ import java.io.*;
 
 public class MainUsuarioOrdBonus {
 public static void main(String[] args) {
-    UsuarioRepositoryArrayList repoArray;
-    UsuarioRepositoryHashMap repoHashmap;
-    UsuarioRepositoryHashSet repoHashset;
+    UsuarioRepositoryArrayList repoArrayList;
+    UsuarioRepositoryHashMap repoHashMap;
+    UsuarioRepositoryHashSet repoHashSet;
     UsuarioRepositoryLinkedHashMap repoLinkedHashMap;
-    UsuarioRepositoryTreeMap repoTreemap;
-    UsuarioRepositoryTreeSet repoTreeset;    
-    String caminhoArquivo = "/home/lorena/ProjetoAlana/ProjetoLEDA-Laboratorio5/src/main/usuariosModificados.txt";
+    UsuarioRepositoryTreeMap repoTreeMap;
+    UsuarioRepositoryTreeSet repoTreeSet;    
+    String caminhoArquivo = "data/usuariosModificados.txt";
 
     // lendo da entrada padrão
     try {
         // Cabeçalho
-        PrintStream fileOut = new PrintStream("/home/lorena/ProjetoAlana/ProjetoLEDA-Laboratorio5/src/main/saidaUsuarioOrdBonus.txt");            
+        PrintStream fileOut = new PrintStream("data/saidaUsuarioOrdBonus.txt");            
         System.setOut(fileOut);
         System.out.println("EDA time sample");
         
@@ -30,19 +30,19 @@ public static void main(String[] args) {
             long tempoTotalAL = 0; 
             long tempoTotalHM = 0;
             long tempoTotalHS = 0;
-            long tempoTotalLHS = 0;
+            long tempoTotalLHM = 0;
             long tempoTotalTM = 0;
             long tempoTotalTS = 0;
 
             for (int i = 0; i < 30; i++) {
                 BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
         
-                repoArray = new UsuarioRepositoryArrayList();
-                repoHashmap = new UsuarioRepositoryHashMap();
-                repoHashset = new UsuarioRepositoryHashSet();
+                repoArrayList = new UsuarioRepositoryArrayList();
+                repoHashMap = new UsuarioRepositoryHashMap();
+                repoHashSet = new UsuarioRepositoryHashSet();
                 repoLinkedHashMap = new UsuarioRepositoryLinkedHashMap();
-                repoTreemap = new UsuarioRepositoryTreeMap();
-                repoTreeset = new UsuarioRepositoryTreeSet();
+                repoTreeMap = new UsuarioRepositoryTreeMap();
+                repoTreeSet = new UsuarioRepositoryTreeSet();
 
                 int linhaAtual = 0;
 
@@ -56,42 +56,42 @@ public static void main(String[] args) {
                     String senha = sequencia[2];
                     String matricula = sequencia[3];
 
-                    repoArray.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
-                    repoHashmap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                    repoHashset.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
+                    repoArrayList.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
+                    repoHashMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
+                    repoHashSet.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
                     repoLinkedHashMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                    repoTreemap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                    repoTreeset.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
+                    repoTreeMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
+                    repoTreeSet.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
                 }
                 reader.close();
             
                 long start = System.nanoTime();
-                repoArray.listaEstudantesRankingDicas();
+                repoArrayList.listaEstudantesRankingDicas();
                 long end = System.nanoTime();
                 tempoTotalAL += (end - start);
 
                 start = System.nanoTime();
-                repoHashmap.listaEstudantesRankingDicas();
+                repoHashMap.listaEstudantesRankingDicas();
                 end = System.nanoTime();
                 tempoTotalHM += (end - start);
 
                 start = System.nanoTime();
-                repoHashset.listaEstudantesRankingDicas();
+                repoHashSet.listaEstudantesRankingDicas();
                 end = System.nanoTime();
                 tempoTotalHS += (end - start);
 
                 start = System.nanoTime();
                 repoLinkedHashMap.listaEstudantesRankingDicas();
                 end = System.nanoTime();
-                tempoTotalLHS += (end - start);
+                tempoTotalLHM += (end - start);
 
                 start = System.nanoTime();
-                repoTreemap.listaEstudantesRankingDicas();
+                repoTreeMap.listaEstudantesRankingDicas();
                 end = System.nanoTime();
                 tempoTotalTM += (end - start);
 
                 start = System.nanoTime();
-                repoTreeset.listaEstudantesRankingDicas();
+                repoTreeSet.listaEstudantesRankingDicas();
                 end = System.nanoTime();
                 tempoTotalTS += (end - start);
             }
@@ -99,7 +99,7 @@ public static void main(String[] args) {
             long mediaAL = tempoTotalAL / 30;
             long mediaHM = tempoTotalHM / 30;
             long mediaHS = tempoTotalHS / 30;
-            long mediaLHS = tempoTotalLHS / 30;
+            long mediaLHM = tempoTotalLHM / 30;
             long mediaTM = tempoTotalTM / 30;
             long mediaTS = tempoTotalTS / 30;
 
@@ -107,7 +107,7 @@ public static void main(String[] args) {
             System.out.println("ArrayList " + mediaAL + " " + carga);
             System.out.println("HashMap " + mediaHM + " " + carga);
             System.out.println("HashSet " + mediaHS + " " + carga);
-            System.out.println("LinkedHashMap " + mediaLHS + " " + carga);
+            System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
             System.out.println("TreeMap " + mediaTM + " " + carga);
             System.out.println("TreeSet " + mediaTS + " " + carga);
         }

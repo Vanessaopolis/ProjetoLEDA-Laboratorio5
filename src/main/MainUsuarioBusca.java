@@ -11,27 +11,25 @@ import java.io.*;
 
 public class MainUsuarioBusca {
     public static void main(String[] args) {
-        UsuarioRepositoryArrayList repoArray;
-        UsuarioRepositoryHashMap repoHashmap;
-        UsuarioRepositoryHashSet repoHashset;
+        UsuarioRepositoryArrayList repoArrayList;
+        UsuarioRepositoryHashMap repoHashMap;
+        UsuarioRepositoryHashSet repoHashSet;
         UsuarioRepositoryLinkedHashMap repoLinkedHashMap;
-        UsuarioRepositoryTreeMap repoTreemap;
-        UsuarioRepositoryTreeSet repoTreeset;    
-        String caminhoArquivo = "/home/lorena/ProjetoAlana/ProjetoLEDA-Laboratorio5/src/main/usuariosModificados.txt";
+        UsuarioRepositoryTreeMap repoTreeMap;
+        UsuarioRepositoryTreeSet repoTreeSet;    
+        String caminhoArquivo = "data/usuariosModificados.txt";
 
         // lendo da entrada padrão
         try {
-            
-            //mudar caminho --------------------------
-            PrintStream fileOut = new PrintStream("src/main/saidaAdicionaUsuario.txt");            
+            PrintStream fileOut = new PrintStream("data/saidaUsuarioBusca.txt");            
             System.setOut(fileOut);
             
             // Cabeçalho
             System.out.println("EDA time sample");
             
-            String cpfASerBuscado;//, cpfASerBuscadoUltimo, cpfASerBuscadoPrimeiro;
 
             for (int carga = 50; carga < 109351; carga*=3) {
+
                 long tempoTotalAL = 0; 
                 long tempoTotalHM = 0;
                 long tempoTotalHS = 0;
@@ -39,15 +37,18 @@ public class MainUsuarioBusca {
                 long tempoTotalTM = 0;
                 long tempoTotalTS = 0;
 
+                
                 for (int i = 0; i < 30; i++) {
                     BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
+                    
+                    String cpfASerBuscado = null;  //, cpfASerBuscadoUltimo, cpfASerBuscadoPrimeiro;
             
-                    repoArray = new UsuarioRepositoryArrayList();
-                    repoHashmap = new UsuarioRepositoryHashMap();
-                    repoHashset = new UsuarioRepositoryHashSet();
+                    repoArrayList = new UsuarioRepositoryArrayList();
+                    repoHashMap = new UsuarioRepositoryHashMap();
+                    repoHashSet = new UsuarioRepositoryHashSet();
                     repoLinkedHashMap = new UsuarioRepositoryLinkedHashMap();
-                    repoTreemap = new UsuarioRepositoryTreeMap();
-                    repoTreeset = new UsuarioRepositoryTreeSet();
+                    repoTreeMap = new UsuarioRepositoryTreeMap();
+                    repoTreeSet = new UsuarioRepositoryTreeSet();
 
                     int linhaAtual = 0;
                 
@@ -56,31 +57,38 @@ public class MainUsuarioBusca {
                         String line = reader.readLine();
                         String[] sequencia = line.split(" ");
                         
-
-                        //String nome = sequencia[0];
+                        String nome = sequencia[0];
                         String cpf = sequencia[1];
                         String senha = sequencia[2];
-                        //String matricula = sequencia[3];
+                        String matricula = sequencia[3];
+
+                        repoArrayList.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
+                        repoHashMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
+                        repoHashSet.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
+                        repoLinkedHashMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
+                        repoTreeMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
+                        repoTreeSet.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
 
                         //Buscar cpf no meio 
                         if (linhaAtual == carga/2) cpfASerBuscado = sequencia[1];
-                        else cpfASerBuscado = sequencia[1];
+                        
 
-                        tempoTotalAL += executaAL(repoArray, cpfASerBuscado, senha);
-                        tempoTotalHM += executaHM(repoHashmap, cpfASerBuscado, senha);
-                        tempoTotalLHM += executaLHM(repoLinkedHashMap, cpfASerBuscado, senha);
-                        tempoTotalHS += executaHS(repoHashset, cpfASerBuscado, senha);
-                        tempoTotalTM += executaTM(repoTreemap, cpfASerBuscado, senha);
-                        tempoTotalTS += executaTS(repoTreeset, cpfASerBuscado, senha);
-
-                        reader.close();
                     }
+                        reader.close();
+
+                        String senha = "senha123";
+                        tempoTotalAL += executaAL(repoArrayList, cpfASerBuscado, senha);
+                        tempoTotalHM += executaHM(repoHashMap, cpfASerBuscado, senha);
+                        tempoTotalLHM += executaLHM(repoLinkedHashMap, cpfASerBuscado, senha);
+                        tempoTotalHS += executaHS(repoHashSet, cpfASerBuscado, senha);
+                        tempoTotalTM += executaTM(repoTreeMap, cpfASerBuscado, senha);
+                        tempoTotalTS += executaTS(repoTreeSet, cpfASerBuscado, senha);
                 }
                 
                 long mediaAL = tempoTotalAL / 30;
                 long mediaHM = tempoTotalHM / 30;
                 long mediaHS = tempoTotalHS / 30;
-                long mediaLHS = tempoTotalLHM / 30;
+                long mediaLHM = tempoTotalLHM / 30;
                 long mediaTM = tempoTotalTM / 30;
                 long mediaTS = tempoTotalTS / 30;
                 
@@ -88,7 +96,7 @@ public class MainUsuarioBusca {
                 System.out.println("ArrayList " + mediaAL + " " + carga);
                 System.out.println("HashMap " + mediaHM + " " + carga);
                 System.out.println("HashSet " + mediaHS + " " + carga);
-                System.out.println("LinkedHashMap " + mediaLHS + " " + carga);
+                System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
                 System.out.println("TreeMap " + mediaTM + " " + carga);
                 System.out.println("TreeSet " + mediaTS + " " + carga);
             }
