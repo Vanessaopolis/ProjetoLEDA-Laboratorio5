@@ -9,7 +9,7 @@
 
 ## 1. Resumo
 
-O projeto consiste em aprimorar um laboratório realizado em uma disciplina anterior, Laboratório de Programação II, focando no último, o Laboratório 5. A proposta é alterar as estruturas de dados utilizadas nesse laboratório, modificando os métodos e funcionalidades que interagem com elas, de modo a observar o impacto dessas mudanças no desempenho do programa. Para isso, será feito um estudo sobre as diferentes estruturas de dados e como elas afetam o funcionamento do código.
+O projeto consiste em aprimorar um laboratório realizado em uma disciplina anterior, Laboratório de Programação II, focando no último, o [Laboratório 5](https://docs.google.com/document/d/1HD3mytjwB-q8TqiEQGKULr6fQ81_MaUPekZpOaBofBI/edit?tab=t.0). A proposta é alterar as estruturas de dados utilizadas nesse laboratório, modificando os métodos e funcionalidades que interagem com elas, de modo a observar o impacto dessas mudanças no desempenho do programa. Para isso, será feito um estudo sobre as diferentes estruturas de dados e como elas afetam o funcionamento do código.
 
 A análise será baseada em entradas controladas, permitindo medir o tempo de execução dos métodos para cada estrutura de dados. A partir desses dados, será possível gerar gráficos de tamanho de entrada por tempo de execução, comparando o desempenho das diferentes abordagens. O objetivo final é discutir qual estrutura de dados é mais adequada para cada tipo de operação, com base nos resultados obtidos, levando em consideração a eficiência de cada uma.
 
@@ -58,7 +58,7 @@ O principal artefato será um relatório explicando as alterações nas estrutur
 ## 3. Planejamento
 
 ### Etapa 1: Análise e Identificação das Estruturas de Dados
-- **Tarefa 1.1**: Revisar o último laboratório da disciplina anterior ([Laboratório 5](https://docs.google.com/document/d/1HD3mytjwB-q8TqiEQGKULr6fQ81_MaUPekZpOaBofBI/edit?tab=t.0)) e identificar as estruturas de dados utilizadas.
+- **Tarefa 1.1**: Revisar o último laboratório da disciplina anterior e identificar as estruturas de dados utilizadas.
 - **Tarefa 1.2**: Listar os métodos que interagem com essas estruturas (busca, ordenação, inserção, etc.).
 - **Tarefa 1.3**: Compreender como as estruturas e métodos estão implementados e qual a função de cada uma no código.
 
