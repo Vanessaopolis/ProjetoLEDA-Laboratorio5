@@ -87,5 +87,38 @@ O principal artefato será um relatório explicando as alterações nas estrutur
 - **Tarefa 7.2**: Incluir no relatório uma análise comparativa do desempenho das diferentes estruturas de dados, com base nos gráficos gerados e nas conclusões dos experimentos.
 - **Tarefa 7.3**: Revisar e finalizar o relatório para entrega, garantindo que esteja claro, bem estruturado e bem documentado.
 
+## 4. Andamento
+
+### Status das Etapas:
+- [x] **Etapa 1: Análise e Identificação das Estruturas de Dados**
+  - [x] Tarefa 1.1: Revisar o laboratório anterior
+  - [x] Tarefa 1.2: Listar os métodos que interagem com as estruturas
+  - [x] Tarefa 1.3: Compreender implementação e função de cada estrutura
+
+- [x] **Etapa 2: Modificação das Estruturas de Dados**
+  - [x] Tarefa 2.1: Alterar as estruturas de dados
+  - [x] Tarefa 2.2: Adaptar os métodos existentes
+
+- [x] **Etapa 3: Garantia de Funcionamento Através de Testes**
+  - [x] Tarefa 3.1: Criar/atualizar testes unitários
+  - [x] Tarefa 3.2: Executar testes e corrigir erros
+
+- [x] **Etapa 4: Definição de Entradas Controladas**
+  - [x] Tarefa 4.1: Escolher casos de teste representativos
+  - [x] Tarefa 4.2: Gerar entradas controladas por script
+
+- [x] **Etapa 5: Execução e Coleta de Dados**
+  - [x] Tarefa 5.1: Executar métodos e registrar tempos
+  - [x] Tarefa 5.2: Calcular tempo médio de execução
+
+- [x] **Etapa 6: Análise e Visualização dos Dados**
+  - [x] Tarefa 6.1: Plotar gráficos comparativos
+  - [ ] Tarefa 6.2: Analisar resultados
+
+- [ ] **Etapa 7: Conclusão e Relatório Final**
+  - [ ] Tarefa 7.1: Redigir relatório explicando modificações
+  - [ ] Tarefa 7.2: Incluir análise comparativa
+  - [ ] Tarefa 7.3: Revisar e finalizar relatório
+
 ## Referências:
 Livro: ["Data Structures & Algorithms in Java" de Robert Lafore](https://www.amazon.com.br/Data-Structures-Algorithms-Java-2nd/dp/0672324539).
