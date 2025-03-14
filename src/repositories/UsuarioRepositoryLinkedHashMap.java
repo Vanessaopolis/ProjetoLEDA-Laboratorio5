@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import entities.Usuario;
+import interfaces.UsuarioRepository;
 import validators.ValidadorUsuario;
 
 /**
@@ -17,7 +18,7 @@ import validators.ValidadorUsuario;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class UsuarioRepositoryLinkedHashMap {
+public class UsuarioRepositoryLinkedHashMap implements UsuarioRepository {
 
 	private Map<String, Usuario> estudantes;
 
@@ -37,13 +38,13 @@ public class UsuarioRepositoryLinkedHashMap {
 	 *         estudante com o mesmo CPF
 	 * @throws NullPointerException se o estudante for nulo
 	 */
-	public boolean adicionaEstudante(String cpf, Usuario estudante) {
+	public boolean adicionaEstudante(Usuario estudante) {
 		ValidadorUsuario.validaUsuario(estudante);
 
-		if (this.estudantes.containsKey(cpf))
+		if (this.estudantes.containsKey(estudante.getCpf()))
 			return false;
 
-		this.estudantes.put(cpf, estudante);
+		this.estudantes.put(estudante.getCpf(), estudante);
 		return true;
 	}
 

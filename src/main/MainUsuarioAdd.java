@@ -1,6 +1,7 @@
 package main;
 
 import entities.Usuario;
+import interfaces.UsuarioRepository;
 import repositories.UsuarioRepositoryArrayList;
 import repositories.UsuarioRepositoryHashMap;
 import repositories.UsuarioRepositoryHashSet;
@@ -10,109 +11,95 @@ import repositories.UsuarioRepositoryTreeSet;
 import java.io.*;
 
 public class MainUsuarioAdd {
-    public static void main(String[] args) {
-        UsuarioRepositoryArrayList repoArrayList;
-        UsuarioRepositoryHashMap repoHashMap;
-        UsuarioRepositoryHashSet repoHashSet;
-        UsuarioRepositoryLinkedHashMap repoLinkedHashMap;
-        UsuarioRepositoryTreeMap repoTreeMap;
-        UsuarioRepositoryTreeSet repoTreeSet;
+	public static void main(String[] args) {
 
-        String caminhoArquivo = "data/usuariosModificados.txt";
+		UsuarioRepository repoArrayList;
+		UsuarioRepository repoHashMap;
+		UsuarioRepository repoHashSet;
+		UsuarioRepository repoLinkedHashMap;
+		UsuarioRepository repoTreeMap;
+		UsuarioRepository repoTreeSet;
 
-        // lendo da entrada padrão
-        try {
-            // Cabeçalho
-            PrintStream fileOut = new PrintStream("data/saidaAdicionaUsuario.txt");            
-            System.setOut(fileOut);
-            System.out.println("EDA time sample");
-            
-            for (int carga = 50; carga < 109351; carga*=3) {
-            
-                long tempoTotalAL = 0; 
-                long tempoTotalHM = 0;
-                long tempoTotalHS = 0;
-                long tempoTotalLHM = 0;
-                long tempoTotalTM = 0;
-                long tempoTotalTS = 0;
+		String caminhoArquivo = Main.FILE_PATH;
 
-                for (int i = 0; i < 30; i++) {
-                    //@SuppressWarnings("resource")
-                    BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
-            
-                    repoArrayList = new UsuarioRepositoryArrayList();
-                    repoHashMap = new UsuarioRepositoryHashMap();
-                    repoHashSet = new UsuarioRepositoryHashSet();
-                    repoLinkedHashMap = new UsuarioRepositoryLinkedHashMap();
-                    repoTreeMap = new UsuarioRepositoryTreeMap();
-                    repoTreeSet = new UsuarioRepositoryTreeSet();
+		// lendo da entrada padrão
+		try {
+			PrintStream fileOut = new PrintStream("data/resultadoTeste.txt");
+			System.setOut(fileOut);
+			// Cabeçalho
+			System.out.println(Main.HEADER);
 
-                    int linhaAtual = 0;
-                
-                    while (linhaAtual++ < carga) {
-                    
-                        String line = reader.readLine();
-                        String[] sequencia = line.split(" ");
-                        
-                        String nome = sequencia[0];
-                        String cpf = sequencia[1];
-                        String senha = sequencia[2];
-                        String matricula = sequencia[3];
-                    
-                        long start = System.nanoTime();
-                        repoArrayList.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
-                        long end = System.nanoTime();
-                        tempoTotalAL += (end - start);
+			for (int carga = Main.CARGA_USUARIO_INICIAL; carga <= 151; carga *= Main.RAZAO) {
+				long tempoTotalAL = 0;
+				long tempoTotalHM = 0;
+				long tempoTotalHS = 0;
+				long tempoTotalLHM = 0;
+				long tempoTotalTM = 0;
+				long tempoTotalTS = 0;
 
-                        start = System.nanoTime();
-                        repoHashMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                        end = System.nanoTime();
-                        tempoTotalHM += (end - start);
+				for (int i = 0; i < Main.REPETICOES; i++) {
+					BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
 
-                        start = System.nanoTime();
-                        repoHashSet.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                        end = System.nanoTime();
-                        tempoTotalHS += (end - start);
+					repoArrayList = new UsuarioRepositoryArrayList();
+					repoHashMap = new UsuarioRepositoryHashMap();
+					repoHashSet = new UsuarioRepositoryHashSet();
+					repoLinkedHashMap = new UsuarioRepositoryLinkedHashMap();
+					repoTreeMap = new UsuarioRepositoryTreeMap();
+					repoTreeSet = new UsuarioRepositoryTreeSet();
 
-                        start = System.nanoTime();
-                        repoLinkedHashMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                        end = System.nanoTime();
-                        tempoTotalLHM += (end - start);
+					int linhaAtual = 0;
 
-                        start = System.nanoTime();
-                        repoTreeMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                        end = System.nanoTime();
-                        tempoTotalTM += (end - start);
+					while (linhaAtual++ < carga) {
+						String line = reader.readLine();
+						String[] sequencia = line.split(" ");
 
-                        start = System.nanoTime();
-                        repoTreeSet.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
-                        end = System.nanoTime();
-                        tempoTotalTS += (end - start);
+						String nome = sequencia[0];
+						String cpf = sequencia[1];
+						String senha = sequencia[2];
+						String matricula = sequencia[3];
 
-                    }
-                        reader.close();
-                }
-                
-                long mediaAL = tempoTotalAL / 30;
-                long mediaHM = tempoTotalHM / 30;
-                long mediaHS = tempoTotalHS / 30;
-                long mediaLHM = tempoTotalLHM / 30;
-                long mediaTM = tempoTotalTM / 30;
-                long mediaTS = tempoTotalTS / 30;
+						Usuario user = new Usuario(nome, cpf, senha, matricula);
 
-                // adiciona o resultado no arquivo de resultado
-                System.out.println("ArrayList " + mediaAL + " " + carga);
-                System.out.println("HashMap " + mediaHM + " " + carga);
-                System.out.println("HashSet " + mediaHS + " " + carga);
-                System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
-                System.out.println("TreeMap " + mediaTM + " " + carga);
-                System.out.println("TreeSet " + mediaTS + " " + carga);
-            }
-            
-            fileOut.close();
-        } catch (IOException ioe) {
-            System.out.println(ioe);
+						tempoTotalAL += executaAdicao(repoArrayList, user);
+						tempoTotalHM += executaAdicao(repoHashMap, user);
+						tempoTotalHS += executaAdicao(repoHashSet, user);
+						tempoTotalLHM += executaAdicao(repoLinkedHashMap, user);
+						tempoTotalTM += executaAdicao(repoTreeMap, user);
+						tempoTotalTS += executaAdicao(repoTreeSet, user);
 
-        }
-    }
+					}
+					reader.close();
+
+				}
+
+				long mediaAL = tempoTotalAL / Main.REPETICOES;
+				long mediaHM = tempoTotalHM / Main.REPETICOES;
+				long mediaHS = tempoTotalHS / Main.REPETICOES;
+				long mediaLHM = tempoTotalLHM / Main.REPETICOES;
+				long mediaTM = tempoTotalTM / Main.REPETICOES;
+				long mediaTS = tempoTotalTS / Main.REPETICOES;
+
+				// adiciona o resultado no arquivo de resultado
+				System.out.println("ArrayList " + mediaAL + " " + carga);
+				System.out.println("HashMap " + mediaHM + " " + carga);
+				System.out.println("HashSet " + mediaHS + " " + carga);
+				System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
+				System.out.println("TreeMap " + mediaTM + " " + carga);
+				System.out.println("TreeSet " + mediaTS + " " + carga);
+			}
+			fileOut.close();
+			System.out.println("Terminou");
+
+		} catch (IOException ioe) {
+			System.out.println(ioe);
+
+		}
+	}
+
+	private static long executaAdicao(UsuarioRepository usuarioRepository, Usuario estudante) {
+		long start = System.nanoTime();
+		usuarioRepository.adicionaEstudante(estudante);
+		long end = System.nanoTime();
+		return end - start;
+	}
 }

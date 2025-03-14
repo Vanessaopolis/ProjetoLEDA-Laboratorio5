@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import entities.Dica;
+import interfaces.DicaRepository;
 import validators.ValidadorDica;
 
 /**
@@ -14,7 +15,7 @@ import validators.ValidadorDica;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class DicaRepositoryHashMap {
+public class DicaRepositoryHashMap implements DicaRepository {
 
 	private HashMap<Integer, Dica> dicas;
 

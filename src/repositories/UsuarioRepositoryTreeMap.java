@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import entities.Usuario;
+import interfaces.UsuarioRepository;
 import validators.ValidadorUsuario;
 
 /**
@@ -16,7 +17,7 @@ import validators.ValidadorUsuario;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class UsuarioRepositoryTreeMap {
+public class UsuarioRepositoryTreeMap implements UsuarioRepository {
 
 	private Map<String, Usuario> estudantes;
 
@@ -36,13 +37,13 @@ public class UsuarioRepositoryTreeMap {
 	 *         estudante com o mesmo CPF
 	 * @throws NullPointerException se o estudante for nulo
 	 */
-	public boolean adicionaEstudante(String cpf, Usuario estudante) {
+	public boolean adicionaEstudante(Usuario estudante) {
 		ValidadorUsuario.validaUsuario(estudante);
 
-		if (this.estudantes.containsKey(cpf)) {
+		if (this.estudantes.containsKey(estudante.getCpf())) {
 			return false;
 		}
-		this.estudantes.put(cpf, estudante);
+		this.estudantes.put(estudante.getCpf(), estudante);
 		return true;
 	}
 

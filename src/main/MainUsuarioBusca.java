@@ -1,6 +1,7 @@
 package main;
 
 import entities.Usuario;
+import interfaces.UsuarioRepository;
 import repositories.UsuarioRepositoryArrayList;
 import repositories.UsuarioRepositoryHashMap;
 import repositories.UsuarioRepositoryHashSet;
@@ -10,144 +11,109 @@ import repositories.UsuarioRepositoryTreeSet;
 import java.io.*;
 
 public class MainUsuarioBusca {
-    public static void main(String[] args) {
-        UsuarioRepositoryArrayList repoArrayList;
-        UsuarioRepositoryHashMap repoHashMap;
-        UsuarioRepositoryHashSet repoHashSet;
-        UsuarioRepositoryLinkedHashMap repoLinkedHashMap;
-        UsuarioRepositoryTreeMap repoTreeMap;
-        UsuarioRepositoryTreeSet repoTreeSet;    
-        String caminhoArquivo = "data/usuariosModificados.txt";
+	public static void main(String[] args) {
 
-        // lendo da entrada padrão
-        try {
-            PrintStream fileOut = new PrintStream("data/saidaUsuarioBusca.txt");            
-            System.setOut(fileOut);
-            
-            // Cabeçalho
-            System.out.println("EDA time sample");
-            
+		UsuarioRepository repoArrayList;
+		UsuarioRepository repoHashMap;
+		UsuarioRepository repoHashSet;
+		UsuarioRepository repoLinkedHashMap;
+		UsuarioRepository repoTreeMap;
+		UsuarioRepository repoTreeSet;
 
-            for (int carga = 50; carga < 109351; carga*=3) {
+		String caminhoArquivo = Main.FILE_PATH;
 
-                long tempoTotalAL = 0; 
-                long tempoTotalHM = 0;
-                long tempoTotalHS = 0;
-                long tempoTotalLHM = 0;
-                long tempoTotalTM = 0;
-                long tempoTotalTS = 0;
+		// lendo da entrada padrão
+		try {
+			PrintStream fileOut = new PrintStream("data/resultadoUsuarioBusca.txt");
+			System.setOut(fileOut);
+			// Cabeçalho
+			System.out.println(Main.HEADER);
 
-                
-                for (int i = 0; i < 30; i++) {
-                    BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
-                    
-                    String cpfASerBuscado = null;  //, cpfASerBuscadoUltimo, cpfASerBuscadoPrimeiro;
-            
-                    repoArrayList = new UsuarioRepositoryArrayList();
-                    repoHashMap = new UsuarioRepositoryHashMap();
-                    repoHashSet = new UsuarioRepositoryHashSet();
-                    repoLinkedHashMap = new UsuarioRepositoryLinkedHashMap();
-                    repoTreeMap = new UsuarioRepositoryTreeMap();
-                    repoTreeSet = new UsuarioRepositoryTreeSet();
+			for (int carga = Main.CARGA_USUARIO_INICIAL; carga <= Main.CARGA_USUARIO_FINAL; carga *= Main.RAZAO) {
+				long tempoTotalAL = 0;
+				long tempoTotalHM = 0;
+				long tempoTotalHS = 0;
+				long tempoTotalLHM = 0;
+				long tempoTotalTM = 0;
+				long tempoTotalTS = 0;
 
-                    int linhaAtual = 0;
-                
-                    while (linhaAtual++ < carga) {
+				for (int i = 0; i < Main.REPETICOES; i++) {
+					BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
 
-                        String line = reader.readLine();
-                        String[] sequencia = line.split(" ");
-                        
-                        String nome = sequencia[0];
-                        String cpf = sequencia[1];
-                        String senha = sequencia[2];
-                        String matricula = sequencia[3];
+					String cpfASerBuscado = null; // , cpfASerBuscadoUltimo, cpfASerBuscadoPrimeiro;
 
-                        repoArrayList.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
-                        repoHashMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                        repoHashSet.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                        repoLinkedHashMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                        repoTreeMap.adicionaEstudante(cpf, new Usuario(nome, cpf, senha, matricula));
-                        repoTreeSet.adicionaEstudante(new Usuario(nome, cpf, senha, matricula));
+					repoArrayList = new UsuarioRepositoryArrayList();
+					repoHashMap = new UsuarioRepositoryHashMap();
+					repoHashSet = new UsuarioRepositoryHashSet();
+					repoLinkedHashMap = new UsuarioRepositoryLinkedHashMap();
+					repoTreeMap = new UsuarioRepositoryTreeMap();
+					repoTreeSet = new UsuarioRepositoryTreeSet();
 
-                        //Buscar cpf no meio 
-                        if (linhaAtual == carga/2) cpfASerBuscado = sequencia[1];
-                        
+					int linhaAtual = 0;
 
-                    }
-                        reader.close();
+					while (linhaAtual++ < carga) {
+						String line = reader.readLine();
+						String[] sequencia = line.split(" ");
 
-                        String senha = "senha123";
-                        tempoTotalAL += executaAL(repoArrayList, cpfASerBuscado, senha);
-                        tempoTotalHM += executaHM(repoHashMap, cpfASerBuscado, senha);
-                        tempoTotalLHM += executaLHM(repoLinkedHashMap, cpfASerBuscado, senha);
-                        tempoTotalHS += executaHS(repoHashSet, cpfASerBuscado, senha);
-                        tempoTotalTM += executaTM(repoTreeMap, cpfASerBuscado, senha);
-                        tempoTotalTS += executaTS(repoTreeSet, cpfASerBuscado, senha);
-                }
-                
-                long mediaAL = tempoTotalAL / 30;
-                long mediaHM = tempoTotalHM / 30;
-                long mediaHS = tempoTotalHS / 30;
-                long mediaLHM = tempoTotalLHM / 30;
-                long mediaTM = tempoTotalTM / 30;
-                long mediaTS = tempoTotalTS / 30;
-                
-                // adiciona o resultado no arquivo de resultado
-                System.out.println("ArrayList " + mediaAL + " " + carga);
-                System.out.println("HashMap " + mediaHM + " " + carga);
-                System.out.println("HashSet " + mediaHS + " " + carga);
-                System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
-                System.out.println("TreeMap " + mediaTM + " " + carga);
-                System.out.println("TreeSet " + mediaTS + " " + carga);
-            }
+						String nome = sequencia[0];
+						String cpf = sequencia[1];
+						String senha = sequencia[2];
+						String matricula = sequencia[3];
 
-            fileOut.close();
-        } catch (IOException ioe) {
-            System.out.println(ioe);
+						Usuario user = new Usuario(nome, cpf, senha, matricula);
 
-        }
+						repoArrayList.adicionaEstudante(user);
+						repoHashMap.adicionaEstudante(user);
+						repoHashSet.adicionaEstudante(user);
+						repoLinkedHashMap.adicionaEstudante(user);
+						repoTreeMap.adicionaEstudante(user);
+						repoTreeSet.adicionaEstudante(user);
 
-    }
+						// Buscar cpf no meio
+						if (linhaAtual == carga / 2)
+							cpfASerBuscado = cpf;
+					}
+					reader.close();
 
-    private static long executaLHM( UsuarioRepositoryLinkedHashMap repoLinkedHashMap, String cpf, String senha){
-        long start = System.nanoTime();
-        repoLinkedHashMap.buscaEstudante(cpf, senha);
-        long end = System.nanoTime();
-        return end - start;
-    }
+					String senha = "senha123";
+					tempoTotalAL += executaBusca(repoArrayList, cpfASerBuscado, senha);
+					tempoTotalHM += executaBusca(repoHashMap, cpfASerBuscado, senha);
+					tempoTotalLHM += executaBusca(repoLinkedHashMap, cpfASerBuscado, senha);
+					tempoTotalHS += executaBusca(repoHashSet, cpfASerBuscado, senha);
+					tempoTotalTM += executaBusca(repoTreeMap, cpfASerBuscado, senha);
+					tempoTotalTS += executaBusca(repoTreeSet, cpfASerBuscado, senha);
+				}
 
-    private static long executaAL( UsuarioRepositoryArrayList repoArray, String cpf, String senha){
-        long start = System.nanoTime();
-        repoArray.buscaEstudante(cpf, senha);
-        long end = System.nanoTime();
-        return end - start;
-    }
+				long mediaAL = tempoTotalAL / Main.REPETICOES;
+				long mediaHM = tempoTotalHM / Main.REPETICOES;
+				long mediaHS = tempoTotalHS / Main.REPETICOES;
+				long mediaLHM = tempoTotalLHM / Main.REPETICOES;
+				long mediaTM = tempoTotalTM / Main.REPETICOES;
+				long mediaTS = tempoTotalTS / Main.REPETICOES;
 
-    private static long executaTS( UsuarioRepositoryTreeSet repoTreeset, String cpf, String senha){
-        long start = System.nanoTime();
-        repoTreeset.buscaEstudante(cpf, senha);
-        long end = System.nanoTime();
-        return end - start;
-    }
+				// adiciona o resultado no arquivo de resultado
+				System.out.println("ArrayList " + mediaAL + " " + carga);
+				System.out.println("HashMap " + mediaHM + " " + carga);
+				System.out.println("HashSet " + mediaHS + " " + carga);
+				System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
+				System.out.println("TreeMap " + mediaTM + " " + carga);
+				System.out.println("TreeSet " + mediaTS + " " + carga);
+			}
+			fileOut.close();
+			System.out.println("Terminou");
 
-    private static long executaHM(UsuarioRepositoryHashMap repoHasmap, String cpf, String senha){
-        long start = System.nanoTime();
-        repoHasmap.buscaEstudante(cpf, senha);
-        long end = System.nanoTime();
-        return end - start;
-    }
+		} catch (IOException ioe) {
+			System.out.println(ioe);
 
-    private static long executaTM( UsuarioRepositoryTreeMap repoTreeMap, String cpf, String senha){
-        long start = System.nanoTime();
-        repoTreeMap.buscaEstudante(cpf, senha);
-        long end = System.nanoTime();
-        return end - start;
-    }
+		}
 
-    private static long executaHS( UsuarioRepositoryHashSet repoHashSet, String cpf, String senha){
-        long start = System.nanoTime();
-        repoHashSet.buscaEstudante(cpf, senha);
-        long end = System.nanoTime();
-        return end - start;
-    }
+	}
+
+	private static long executaBusca(UsuarioRepository usuarioRepository, String cpf, String senha) {
+		long start = System.nanoTime();
+		usuarioRepository.buscaEstudante(cpf, senha);
+		long end = System.nanoTime();
+		return end - start;
+	}
+
 }

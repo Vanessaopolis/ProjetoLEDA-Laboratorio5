@@ -3,6 +3,7 @@ package repositories;
 import java.util.Iterator;
 import java.util.TreeSet;
 import entities.Dica;
+import interfaces.DicaRepository;
 import validators.ValidadorDica;
 
 /**
@@ -13,7 +14,7 @@ import validators.ValidadorDica;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class DicaRepositoryTreeSet {
+public class DicaRepositoryTreeSet implements DicaRepository {
 
 	private TreeSet<Dica> dicas;
 

@@ -32,28 +32,28 @@ public class UsuarioRepositoryTest {
 	void testAdicionaEstudante() {
 		Usuario u1 = new Usuario("Fulano", "123.456.789-00", "1234", "123456789");
 
-		assertTrue(this.usuarioRepositoryHashMap.adicionaEstudante("123.456.789-00", u1));
-		assertTrue(this.usuarioRepositoryTreeMap.adicionaEstudante("123.456.789-00", u1));
-		assertTrue(this.usuarioRepositoryHashSet.adicionaEstudante("123.456.789-00", u1));
+		assertTrue(this.usuarioRepositoryHashMap.adicionaEstudante(u1));
+		assertTrue(this.usuarioRepositoryTreeMap.adicionaEstudante(u1));
+		assertTrue(this.usuarioRepositoryHashSet.adicionaEstudante(u1));
 		assertTrue(this.usuarioRepositoryArrayList.adicionaEstudante(u1));
-		assertTrue(this.usuarioRepositoryLinkedHashMap.adicionaEstudante("123.456.789-00", u1));
+		assertTrue(this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u1));
 		assertTrue(this.usuarioRepositoryTreeSet.adicionaEstudante(u1));
 	}
 
 	@Test
 	void testAdicionaEstudanteNulo() {
 		String mensagem = assertThrows(NullPointerException.class, () -> {
-			this.usuarioRepositoryHashMap.adicionaEstudante("123.456.789-00", null);
+			this.usuarioRepositoryHashMap.adicionaEstudante(null);
 		}).getMessage();
 		assertEquals("O usuário não pode ser nulo", mensagem);
 
 		mensagem = assertThrows(NullPointerException.class, () -> {
-			this.usuarioRepositoryTreeMap.adicionaEstudante("123.456.789-00", null);
+			this.usuarioRepositoryTreeMap.adicionaEstudante(null);
 		}).getMessage();
 		assertEquals("O usuário não pode ser nulo", mensagem);
 
 		mensagem = assertThrows(NullPointerException.class, () -> {
-			this.usuarioRepositoryHashSet.adicionaEstudante("123.456.789-00", null);
+			this.usuarioRepositoryHashSet.adicionaEstudante(null);
 		}).getMessage();
 		assertEquals("O usuário não pode ser nulo", mensagem);
 
@@ -63,7 +63,7 @@ public class UsuarioRepositoryTest {
 		assertEquals("O usuário não pode ser nulo", mensagem);
 
 		mensagem = assertThrows(NullPointerException.class, () -> {
-			this.usuarioRepositoryLinkedHashMap.adicionaEstudante("123.456.789-00", null);
+			this.usuarioRepositoryLinkedHashMap.adicionaEstudante(null);
 		}).getMessage();
 		assertEquals("O usuário não pode ser nulo", mensagem);
 
@@ -78,18 +78,18 @@ public class UsuarioRepositoryTest {
 		Usuario u1 = new Usuario("Fulano", "123.456.789-00", "1234", "123456789");
 		Usuario u2 = new Usuario("Fulano", "987.654.321-00", "1234", "123456789");
 
-		this.usuarioRepositoryHashMap.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryTreeMap.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryHashSet.adicionaEstudante("123.456.789-00", u1);
+		this.usuarioRepositoryHashMap.adicionaEstudante(u1);
+		this.usuarioRepositoryTreeMap.adicionaEstudante(u1);
+		this.usuarioRepositoryHashSet.adicionaEstudante(u1);
 		this.usuarioRepositoryArrayList.adicionaEstudante(u1);
-		this.usuarioRepositoryLinkedHashMap.adicionaEstudante("123.456.789-00", u1);
+		this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u1);
 		this.usuarioRepositoryTreeSet.adicionaEstudante(u1);
 
-		assertFalse(this.usuarioRepositoryHashMap.adicionaEstudante("123.456.789-00", u1));
-		assertFalse(this.usuarioRepositoryTreeMap.adicionaEstudante("123.456.789-00", u1));
-		assertFalse(this.usuarioRepositoryHashSet.adicionaEstudante("123.456.789-00", u1));
+		assertFalse(this.usuarioRepositoryHashMap.adicionaEstudante(u1));
+		assertFalse(this.usuarioRepositoryTreeMap.adicionaEstudante(u1));
+		assertFalse(this.usuarioRepositoryHashSet.adicionaEstudante(u1));
 		assertFalse(this.usuarioRepositoryArrayList.adicionaEstudante(u1));
-		assertFalse(this.usuarioRepositoryLinkedHashMap.adicionaEstudante("123.456.789-00", u1));
+		assertFalse(this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u1));
 		assertFalse(this.usuarioRepositoryTreeSet.adicionaEstudante(u1));
 
 		// é permitido usuários de nomes iguais, se os CPFs forem diferentes
@@ -101,20 +101,20 @@ public class UsuarioRepositoryTest {
 		Usuario u1 = new Usuario("Fulano", "123.456.789-00", "1234", "123456789");
 		Usuario u2 = new Usuario("Beltrano", "987.654.321-00", "4321", "987654321");
 
-		this.usuarioRepositoryHashMap.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryHashMap.adicionaEstudante("987.654.321-00", u2);
+		this.usuarioRepositoryHashMap.adicionaEstudante(u1);
+		this.usuarioRepositoryHashMap.adicionaEstudante(u2);
 
-		this.usuarioRepositoryTreeMap.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryTreeMap.adicionaEstudante("987.654.321-00", u2);
+		this.usuarioRepositoryTreeMap.adicionaEstudante(u1);
+		this.usuarioRepositoryTreeMap.adicionaEstudante(u2);
 
-		this.usuarioRepositoryHashSet.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryHashSet.adicionaEstudante("987.654.321-00", u2);
+		this.usuarioRepositoryHashSet.adicionaEstudante(u1);
+		this.usuarioRepositoryHashSet.adicionaEstudante(u2);
 
 		this.usuarioRepositoryArrayList.adicionaEstudante(u1);
 		this.usuarioRepositoryArrayList.adicionaEstudante(u2);
 
-		this.usuarioRepositoryLinkedHashMap.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryLinkedHashMap.adicionaEstudante("987.654.321-00", u2);
+		this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u1);
+		this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u2);
 
 		this.usuarioRepositoryTreeSet.adicionaEstudante(u1);
 		this.usuarioRepositoryTreeSet.adicionaEstudante(u2);
@@ -176,25 +176,25 @@ public class UsuarioRepositoryTest {
 		Usuario u3 = new Usuario("Ciclano", "123.456.789-01", "1234", "123456987");
 		u3.recebeBonificacao(15);
 
-		this.usuarioRepositoryHashMap.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryHashMap.adicionaEstudante("987.654.321-00", u2);
-		this.usuarioRepositoryHashMap.adicionaEstudante("123.456.789-01", u3);
+		this.usuarioRepositoryHashMap.adicionaEstudante(u1);
+		this.usuarioRepositoryHashMap.adicionaEstudante(u2);
+		this.usuarioRepositoryHashMap.adicionaEstudante(u3);
 
-		this.usuarioRepositoryTreeMap.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryTreeMap.adicionaEstudante("987.654.321-00", u2);
-		this.usuarioRepositoryTreeMap.adicionaEstudante("123.456.789-01", u3);
+		this.usuarioRepositoryTreeMap.adicionaEstudante(u1);
+		this.usuarioRepositoryTreeMap.adicionaEstudante(u2);
+		this.usuarioRepositoryTreeMap.adicionaEstudante(u3);
 
-		this.usuarioRepositoryHashSet.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryHashSet.adicionaEstudante("987.654.321-00", u2);
-		this.usuarioRepositoryHashSet.adicionaEstudante("123.456.789-01", u3);
+		this.usuarioRepositoryHashSet.adicionaEstudante(u1);
+		this.usuarioRepositoryHashSet.adicionaEstudante(u2);
+		this.usuarioRepositoryHashSet.adicionaEstudante(u3);
 
 		this.usuarioRepositoryArrayList.adicionaEstudante(u1);
 		this.usuarioRepositoryArrayList.adicionaEstudante(u2);
 		this.usuarioRepositoryArrayList.adicionaEstudante(u3);
 
-		this.usuarioRepositoryLinkedHashMap.adicionaEstudante("123.456.789-00", u1);
-		this.usuarioRepositoryLinkedHashMap.adicionaEstudante("987.654.321-00", u2);
-		this.usuarioRepositoryLinkedHashMap.adicionaEstudante("123.456.789-01", u3);
+		this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u1);
+		this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u2);
+		this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u3);
 
 		this.usuarioRepositoryTreeSet.adicionaEstudante(u1);
 		this.usuarioRepositoryTreeSet.adicionaEstudante(u2);

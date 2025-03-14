@@ -1,8 +1,8 @@
 package main;
 
-import entities.Dica;
 import entities.Usuario;
 import interfaces.DicaRepository;
+import entities.Dica;
 import repositories.DicaRepositoryArrayList;
 import repositories.DicaRepositoryDeque;
 import repositories.DicaRepositoryHashMap;
@@ -11,7 +11,7 @@ import repositories.DicaRepositoryLinkedList;
 import repositories.DicaRepositoryTreeSet;
 import java.io.*;
 
-public class MainDicaAdd {
+public class MainDicaBuscaUltima {
 	public static void main(String[] args) {
 
 		DicaRepository repoArrayList;
@@ -25,7 +25,7 @@ public class MainDicaAdd {
 
 		// lendo da entrada padrão
 		try {
-			PrintStream fileOut = new PrintStream("data/resultadoDicaAdd.txt");
+			PrintStream fileOut = new PrintStream("data/resultadoDicaBuscaUltima.txt");
 			System.setOut(fileOut);
 			// Cabeçalho
 			System.out.println(Main.HEADER);
@@ -63,29 +63,48 @@ public class MainDicaAdd {
 						Dica d1 = new Dica(user, "PesquisaExtensao");
 						Dica d2 = new Dica(user, "Monitoria");
 
-						tempoTotalAL += executaAdicao(repoArrayList, d1, d2);
-						tempoTotalDQ += executaAdicao(repoDeque, d1, d2);
-						tempoTotalHM += executaAdicao(repoHashMap, d1, d2);
-						tempoTotalLHM += executaAdicao(repoLinkedHashMap, d1, d2);
-						tempoTotalLL += executaAdicao(repoLinkedList, d1, d2);
-						tempoTotalTS += executaAdicao(repoTreeSet, d1, d2);
+						repoArrayList.adicionaDica(d1);
+						repoArrayList.adicionaDica(d2);
+
+						repoHashMap.adicionaDica(d1);
+						repoHashMap.adicionaDica(d2);
+
+						repoDeque.adicionaDica(d1);
+						repoDeque.adicionaDica(d2);
+
+						repoLinkedHashMap.adicionaDica(d1);
+						repoLinkedHashMap.adicionaDica(d2);
+
+						repoLinkedList.adicionaDica(d1);
+						repoLinkedList.adicionaDica(d2);
+
+						repoTreeSet.adicionaDica(d1);
+						repoTreeSet.adicionaDica(d2);
 					}
 					reader.close();
+
+					int posicao = carga * 2;
+					tempoTotalAL += executaBusca(repoArrayList, posicao);
+					tempoTotalHM += executaBusca(repoHashMap, posicao);
+					tempoTotalLHM += executaBusca(repoLinkedHashMap, posicao);
+					tempoTotalDQ += executaBusca(repoDeque, posicao);
+					tempoTotalLL += executaBusca(repoLinkedList, posicao);
+					tempoTotalTS += executaBusca(repoTreeSet, posicao);
 				}
 
 				long mediaAL = tempoTotalAL / Main.REPETICOES;
-				long mediaDQ = tempoTotalDQ / Main.REPETICOES;
 				long mediaHM = tempoTotalHM / Main.REPETICOES;
+				long mediaDQ = tempoTotalDQ / Main.REPETICOES;
 				long mediaLHM = tempoTotalLHM / Main.REPETICOES;
 				long mediaLL = tempoTotalLL / Main.REPETICOES;
 				long mediaTS = tempoTotalTS / Main.REPETICOES;
 
 				// adiciona o resultado no arquivo de resultado
 				System.out.println("ArrayList " + mediaAL + " " + carga * 2);
-				System.out.println("Deque " + mediaDQ + " " + carga * 2);
-				System.out.println("HashSet " + mediaHM + " " + carga * 2);
+				System.out.println("HashMap " + mediaHM + " " + carga * 2);
+				System.out.println("LinkedList " + mediaLL + " " + carga * 2);
 				System.out.println("LinkedHashMap " + mediaLHM + " " + carga * 2);
-				System.out.println("TreeMap " + mediaLL + " " + carga * 2);
+				System.out.println("Deque " + mediaDQ + " " + carga * 2);
 				System.out.println("TreeSet " + mediaTS + " " + carga * 2);
 			}
 			fileOut.close();
@@ -94,12 +113,12 @@ public class MainDicaAdd {
 		} catch (IOException ioe) {
 			System.out.println(ioe);
 		}
+
 	}
 
-	private static long executaAdicao(DicaRepository dicaRepository, Dica dica1, Dica dica2) {
+	private static long executaBusca(DicaRepository dicaRepository, int posicao) {
 		long start = System.nanoTime();
-		dicaRepository.adicionaDica(dica1);
-		dicaRepository.adicionaDica(dica2);
+		dicaRepository.buscaDica(posicao);
 		long end = System.nanoTime();
 		return end - start;
 	}

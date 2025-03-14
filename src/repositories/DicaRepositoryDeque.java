@@ -1,6 +1,8 @@
 package repositories;
 
 import entities.Dica;
+import interfaces.DicaRepository;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import validators.ValidadorDica;
@@ -13,7 +15,7 @@ import validators.ValidadorDica;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class DicaRepositoryDeque {
+public class DicaRepositoryDeque implements DicaRepository {
 
 	private Deque<Dica> dicas;
 

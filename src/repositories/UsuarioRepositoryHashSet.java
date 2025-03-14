@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import entities.Usuario;
+import interfaces.UsuarioRepository;
 import validators.ValidadorUsuario;
 
 /**
@@ -18,7 +19,7 @@ import validators.ValidadorUsuario;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class UsuarioRepositoryHashSet {
+public class UsuarioRepositoryHashSet implements UsuarioRepository {
 
 	private Set<Usuario> estudantes;
 
@@ -38,7 +39,7 @@ public class UsuarioRepositoryHashSet {
 	 *         estudante com o mesmo CPF
 	 * @throws NullPointerException se o estudante for nulo
 	 */
-	public boolean adicionaEstudante(String cpf, Usuario estudante) {
+	public boolean adicionaEstudante(Usuario estudante) {
 		ValidadorUsuario.validaUsuario(estudante);
 
 		if (this.estudantes.contains(estudante)) {

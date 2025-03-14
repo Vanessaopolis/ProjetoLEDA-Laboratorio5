@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entities.Dica;
+import interfaces.DicaRepository;
 import validators.ValidadorDica;
 
 /**
@@ -13,7 +14,7 @@ import validators.ValidadorDica;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class DicaRepositoryArrayList {
+public class DicaRepositoryArrayList implements DicaRepository {
 
 	private List<Dica> dicas;
 

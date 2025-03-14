@@ -1,0 +1,7 @@
+EDA time sample
+ArrayList 43273 50
+HashMap 5049 50
+HashSet 44230 50
+LinkedHashMap 2776 50
+TreeMap 4323 50
+TreeSet 31693 50

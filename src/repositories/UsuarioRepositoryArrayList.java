@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Comparator;
 
 import entities.Usuario;
+import interfaces.UsuarioRepository;
 import validators.ValidadorUsuario;
 
 /**
@@ -16,7 +17,7 @@ import validators.ValidadorUsuario;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class UsuarioRepositoryArrayList {
+public class UsuarioRepositoryArrayList implements UsuarioRepository {
 
 	private ArrayList<Usuario> estudantes;
 

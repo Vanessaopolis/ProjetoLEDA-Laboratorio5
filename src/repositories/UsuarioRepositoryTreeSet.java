@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.TreeSet;
 
 import entities.Usuario;
+import interfaces.UsuarioRepository;
 import validators.ValidadorUsuario;
 
 /**
@@ -16,7 +17,7 @@ import validators.ValidadorUsuario;
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
 
-public class UsuarioRepositoryTreeSet {
+public class UsuarioRepositoryTreeSet implements UsuarioRepository {
 
 	private TreeSet<Usuario> estudantes;
 

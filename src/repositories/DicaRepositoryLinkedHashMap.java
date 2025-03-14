@@ -1,6 +1,8 @@
 package repositories;
 
 import entities.Dica;
+import interfaces.DicaRepository;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import validators.ValidadorDica;
@@ -12,7 +14,7 @@ import validators.ValidadorDica;
  * @author Lukas Soares do Nascimento, matrícula 123210298
  * @author Alana Vanessa Pimentel Toldo de Andrade, matrícula 123210882
  */
-public class DicaRepositoryLinkedHashMap {
+public class DicaRepositoryLinkedHashMap implements DicaRepository {
 
 	private Map<Integer, Dica> dicas;
 	private Integer numeroDaDica;
@@ -99,7 +101,7 @@ public class DicaRepositoryLinkedHashMap {
 	 * @return os detalhes da dica
 	 * @throws IllegalArgumentException se posicao for inválida
 	 */
-	public String listaDicaDetalhada(int posicao) {
+	public String listaDicaDetalhes(int posicao) {
 		return dicas.get(posicao).exibeDetalhes();
 	}
 
