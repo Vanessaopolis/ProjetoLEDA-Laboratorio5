@@ -24,12 +24,12 @@ public class MainUsuarioAdd {
 
 		// lendo da entrada padrão
 		try {
-			PrintStream fileOut = new PrintStream("data/resultadoTeste.txt");
+			PrintStream fileOut = new PrintStream("data/resultadoUsuarioAdd.txt");
 			System.setOut(fileOut);
 			// Cabeçalho
 			System.out.println(Main.HEADER);
 
-			for (int carga = Main.CARGA_USUARIO_INICIAL; carga <= 151; carga *= Main.RAZAO) {
+			for (int carga = Main.CARGA_USUARIO_INICIAL; carga <= Main.CARGA_USUARIO_FINAL; carga *= Main.RAZAO) {
 				long tempoTotalAL = 0;
 				long tempoTotalHM = 0;
 				long tempoTotalHS = 0;

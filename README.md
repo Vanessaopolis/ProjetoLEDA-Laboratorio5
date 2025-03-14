@@ -31,7 +31,7 @@ As estruturas de dados selecionadas foram:
 
 A tabela a seguir apresenta os pares atribuídos a cada integrante:
 
-| Integrante Responsável | Repositório de Usuário<br>atualmente: HashMap | Repositório de Dica<br>atualmente: ArrayList |
+| Integrante Responsável | Repositório de Usuário<br>originalmente: HashMap | Repositório de Dica<br>originalmente: ArrayList |
 |------------------------|-----------------------------------------------|---------------------------------------------|
 | Alana | TreeMap | LinkedList |
 | Camila | HashSet | Deque |
