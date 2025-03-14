@@ -58,7 +58,7 @@ O principal artefato será um relatório explicando as alterações nas estrutur
 ## 3. Planejamento
 
 ### Etapa 1: Análise e Identificação das Estruturas de Dados
-- **Tarefa 1.1**: Revisar o laboratório anterior (Laboratório 5) e identificar as estruturas de dados utilizadas.
+- **Tarefa 1.1**: Revisar o último laboratório da disciplina anterior ([Laboratório 5](https://docs.google.com/document/d/1HD3mytjwB-q8TqiEQGKULr6fQ81_MaUPekZpOaBofBI/edit?tab=t.0)) e identificar as estruturas de dados utilizadas.
 - **Tarefa 1.2**: Listar os métodos que interagem com essas estruturas (busca, ordenação, inserção, etc.).
 - **Tarefa 1.3**: Compreender como as estruturas e métodos estão implementados e qual a função de cada uma no código.
 
@@ -67,7 +67,7 @@ O principal artefato será um relatório explicando as alterações nas estrutur
 - **Tarefa 2.2**: Adaptar os métodos existentes para funcionarem corretamente com as novas estruturas de dados.
 
 ### Etapa 3: Garantia de Funcionamento Através de Testes
-- **Tarefa 3.1**: Criar e/ou atualizar testes unitários para verificar se os métodos continuam funcionando corretamente após as modificações.
+- **Tarefa 3.1**: Criar e atualizar testes unitários para verificar se os métodos continuam funcionando corretamente após as modificações.
 - **Tarefa 3.2**: Executar os testes unitários e corrigir quaisquer erros encontrados, garantindo que o código esteja robusto e confiável.
 
 ### Etapa 4: Definição de Entradas Controladas
