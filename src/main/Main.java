@@ -6,7 +6,7 @@ public abstract class Main {
 
 	// carga dividida em 2, pois cada usuário vai possuir 2 dicas
 	public static final int CARGA_DICA_INICIAL = CARGA_USUARIO_INICIAL / 2;
-	public static final int CARGA_DICA_FINAL = (CARGA_USUARIO_FINAL - 1) / 2;
+	public static final int CARGA_DICA_FINAL = CARGA_USUARIO_FINAL / 2;
 
 	public static final int RAZAO = 3;
 	public static final int REPETICOES = 30;
