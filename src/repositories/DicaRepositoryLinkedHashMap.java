@@ -2,7 +2,6 @@ package repositories;
 
 import entities.Dica;
 import interfaces.DicaRepository;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import validators.ValidadorDica;
@@ -37,8 +36,10 @@ public class DicaRepositoryLinkedHashMap implements DicaRepository {
 	public int adicionaDica(Dica dica) {
 		ValidadorDica.validaDica(dica);
 
+		/*
 		if (this.dicas.containsValue(dica))
-			return 0;
+		return 0;
+		*/
 
 		dicas.put(++numeroDaDica, dica);
 

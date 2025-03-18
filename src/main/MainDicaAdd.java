@@ -3,13 +3,13 @@ package main;
 import entities.Dica;
 import entities.Usuario;
 import interfaces.DicaRepository;
+import java.io.*;
 import repositories.DicaRepositoryArrayList;
 import repositories.DicaRepositoryDeque;
 import repositories.DicaRepositoryHashMap;
 import repositories.DicaRepositoryLinkedHashMap;
 import repositories.DicaRepositoryLinkedList;
 import repositories.DicaRepositoryTreeSet;
-import java.io.*;
 
 public class MainDicaAdd {
 	public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class MainDicaAdd {
 
 		// lendo da entrada padrão
 		try {
-			PrintStream fileOut = new PrintStream("data/resultadoDicaAdd.txt");
+			PrintStream fileOut = new PrintStream("data/resultadoDicaAddTesteDeMudanca.txt");
 			System.setOut(fileOut);
 			// Cabeçalho
 			System.out.println(Main.HEADER);
