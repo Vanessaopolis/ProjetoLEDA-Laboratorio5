@@ -2,7 +2,6 @@ package repositories;
 
 import entities.Dica;
 import interfaces.DicaRepository;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import validators.ValidadorDica;
@@ -105,6 +104,13 @@ public class DicaRepositoryDeque implements DicaRepository {
 	 */
 	public Dica buscaDica(int posicao) {
 		ValidadorDica.validaPosicao(posicao, this.dicas.size());
-		return (Dica) dicas.toArray()[posicao - 1]; // Utilizando toArray() para acessar a dica na posição
+
+		int i = 0;
+		for (Dica dica : dicas) { //iterar ate achar a dica na posicao especificada
+			if (++i == posicao) {
+				return dica;
+			}
+		}
+		return null;
 	}
 }

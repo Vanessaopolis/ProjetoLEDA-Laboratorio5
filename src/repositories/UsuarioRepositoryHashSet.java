@@ -1,13 +1,12 @@
 package repositories;
 
+import entities.Usuario;
+import interfaces.UsuarioRepository;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
-
-import entities.Usuario;
-import interfaces.UsuarioRepository;
 import validators.ValidadorUsuario;
 
 /**
@@ -27,7 +26,7 @@ public class UsuarioRepositoryHashSet implements UsuarioRepository {
 	 * Cria um novo repositório de usuários.
 	 */
 	public UsuarioRepositoryHashSet() {
-		this.estudantes = new HashSet<>();
+		this.estudantes = new HashSet<>(150000, 0.75f); // iniciando com uma capacidade maior
 	}
 
 	/**
@@ -93,20 +92,25 @@ public class UsuarioRepositoryHashSet implements UsuarioRepository {
 	 * @throws IllegalArgumentException se as credenciais forem inválidas
 	 */
 	public Usuario buscaEstudante(String cpf, String senha) {
-		Usuario estudanteProcurado = null;
+		Usuario estudanteProcurado = new Usuario(null, cpf, null, null);
 
-		for (var u : estudantes) { // Procura o estudante com o cpf pedido
-			if (u.getCpf().equals(cpf)) {
-				estudanteProcurado = u;
-				break;
+		if (estudantes.contains(estudanteProcurado)) {
+			for (Usuario u : estudantes) {
+				if (u.getCpf().equals(cpf)) {
+					estudanteProcurado = u;
+					break;
+				}
 			}
 		}
+
 		ValidadorUsuario.validaUsuario(estudanteProcurado);
 		if (validaSenha(estudanteProcurado, senha)) {
 			return estudanteProcurado;
 		}
 
 		throw new IllegalArgumentException("Usuário ou senha inválidos");
+
+		
 	}
 
 	private boolean validaSenha(Usuario estudante, String senha) {
