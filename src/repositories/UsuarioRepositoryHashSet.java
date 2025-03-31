@@ -26,7 +26,7 @@ public class UsuarioRepositoryHashSet implements UsuarioRepository {
 	 * Cria um novo repositório de usuários.
 	 */
 	public UsuarioRepositoryHashSet() {
-		this.estudantes = new HashSet<>(150000, 0.75f); // iniciando com uma capacidade maior
+		this.estudantes = new HashSet<>();
 	}
 
 	/**
@@ -92,16 +92,15 @@ public class UsuarioRepositoryHashSet implements UsuarioRepository {
 	 * @throws IllegalArgumentException se as credenciais forem inválidas
 	 */
 	public Usuario buscaEstudante(String cpf, String senha) {
-		Usuario estudanteProcurado = new Usuario(null, cpf, null, null);
-
-		if (estudantes.contains(estudanteProcurado)) {
-			for (Usuario u : estudantes) {
-				if (u.getCpf().equals(cpf)) {
-					estudanteProcurado = u;
-					break;
-				}
+		Usuario estudanteProcurado = null;
+	
+		for (Usuario u : estudantes) {
+			if (u.getCpf().equals(cpf)) {
+				estudanteProcurado = u;
+				break;
 			}
 		}
+
 
 		ValidadorUsuario.validaUsuario(estudanteProcurado);
 		if (validaSenha(estudanteProcurado, senha)) {
