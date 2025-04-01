@@ -7,7 +7,6 @@ public class MainDosMains {
 	public static void main(String[] args) throws IOException, InterruptedException {
 
 		System.out.println("Começando os testes para repositórios de Usuario...");
-
 		executaOutraClasse("MainUsuarioAdd");
 		executaOutraClasse("MainUsuarioBusca");
 		executaOutraClasse("MainUsuarioOrdAlfabetica");
@@ -24,10 +23,12 @@ public class MainDosMains {
 		System.out.println("Todos os testes terminaram!");
 
 	}
-	//TODO: ajustar processBuilder 
+
 	private static void executaOutraClasse(String nomeClasse) throws IOException, InterruptedException {
 		System.out.println("Iniciando execução de " + nomeClasse);
-		ProcessBuilder processBuilder = new ProcessBuilder("java", nomeClasse);
+		ProcessBuilder processBuilder = new ProcessBuilder("java", "-cp",
+				"D:/ufcg/graduação Ciência da Computação/2024.2/Laboratório de Estruturas de Dados e Algoritmos/Projeto/ProjetoLEDA-Laboratorio5/src",
+				"main." + nomeClasse);
 		processBuilder.inheritIO();
 		Process process = processBuilder.start();
 		process.waitFor();

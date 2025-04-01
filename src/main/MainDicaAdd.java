@@ -23,7 +23,7 @@ public class MainDicaAdd {
 		String caminhoArquivo = Main.FILE_PATH;
 
 		try {
-			PrintStream fileOut = new PrintStream("data/resultadoDicaAddTesteDeMudanca.txt");
+			PrintStream fileOut = new PrintStream("data/resultadoDicaAdd.txt");
 			System.setOut(fileOut);
 			System.out.println(Main.HEADER);
 

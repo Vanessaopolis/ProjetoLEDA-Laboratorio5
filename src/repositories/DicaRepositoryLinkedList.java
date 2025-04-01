@@ -1,7 +1,6 @@
 package repositories;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import entities.Dica;
 import interfaces.DicaRepository;
@@ -16,7 +15,7 @@ import validators.ValidadorDica;
 
 public class DicaRepositoryLinkedList implements DicaRepository {
 
-	private List<Dica> dicas;
+	private LinkedList<Dica> dicas;
 
 	/**
 	 * Cria um novo repositório de dicas.
