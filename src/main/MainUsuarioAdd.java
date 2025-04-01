@@ -12,7 +12,6 @@ import java.io.*;
 
 public class MainUsuarioAdd {
 	public static void main(String[] args) {
-
 		UsuarioRepository repoArrayList;
 		UsuarioRepository repoHashMap;
 		UsuarioRepository repoHashSet;
@@ -22,14 +21,12 @@ public class MainUsuarioAdd {
 
 		String caminhoArquivo = Main.FILE_PATH;
 
-		// lendo da entrada padrão
 		try {
 			PrintStream fileOut = new PrintStream("data/resultadoUsuarioAdd.txt");
 			System.setOut(fileOut);
-			// Cabeçalho
 			System.out.println(Main.HEADER);
 
-			for (int carga = Main.CARGA_USUARIO_INICIAL; carga <= Main.CARGA_USUARIO_FINAL; carga *= Main.RAZAO) {
+			for (int carga : Main.CARGAS) {
 				long tempoTotalAL = 0;
 				long tempoTotalHM = 0;
 				long tempoTotalHS = 0;
@@ -48,16 +45,14 @@ public class MainUsuarioAdd {
 					repoTreeSet = new UsuarioRepositoryTreeSet();
 
 					int linhaAtual = 0;
-
 					while (linhaAtual++ < carga) {
 						String line = reader.readLine();
-						String[] sequencia = line.split(" ");
+						String[] dados = line.split(" ");
 
-						String nome = sequencia[0];
-						String cpf = sequencia[1];
-						String senha = sequencia[2];
-						String matricula = sequencia[3];
-
+						String nome = dados[0];
+						String cpf = dados[1];
+						String senha = dados[2];
+						String matricula = dados[3];
 						Usuario user = new Usuario(nome, cpf, senha, matricula);
 
 						tempoTotalAL += executaAdicao(repoArrayList, user);
@@ -68,8 +63,8 @@ public class MainUsuarioAdd {
 						tempoTotalTS += executaAdicao(repoTreeSet, user);
 
 					}
-					reader.close();
 
+					reader.close();
 				}
 
 				long mediaAL = tempoTotalAL / Main.REPETICOES;
@@ -79,7 +74,6 @@ public class MainUsuarioAdd {
 				long mediaTM = tempoTotalTM / Main.REPETICOES;
 				long mediaTS = tempoTotalTS / Main.REPETICOES;
 
-				// adiciona o resultado no arquivo de resultado
 				System.out.println("ArrayList " + mediaAL + " " + carga);
 				System.out.println("HashMap " + mediaHM + " " + carga);
 				System.out.println("HashSet " + mediaHS + " " + carga);
@@ -87,12 +81,14 @@ public class MainUsuarioAdd {
 				System.out.println("TreeMap " + mediaTM + " " + carga);
 				System.out.println("TreeSet " + mediaTS + " " + carga);
 			}
+
 			fileOut.close();
+			System.setOut(Main.CONSOLE_OUT);
 			System.out.println("Terminou");
 
 		} catch (IOException ioe) {
+			System.setOut(Main.CONSOLE_OUT);
 			System.out.println(ioe);
-
 		}
 	}
 

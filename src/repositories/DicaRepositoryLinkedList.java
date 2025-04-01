@@ -35,7 +35,6 @@ public class DicaRepositoryLinkedList implements DicaRepository {
 	 */
 	public int adicionaDica(Dica dica) {
 		ValidadorDica.validaDica(dica);
-
 		return (this.dicas.add(dica)) ? this.dicas.size() : -1;
 	}
 
@@ -48,11 +47,13 @@ public class DicaRepositoryLinkedList implements DicaRepository {
 		if (this.dicas.size() == 0) {
 			return new String[0];
 		}
+
 		String[] lista = new String[this.dicas.size()];
 		int i = 0;
 		for (Dica dica : dicas) {
 			lista[i++] = dica.toString();
 		}
+
 		return lista;
 	}
 
@@ -65,11 +66,13 @@ public class DicaRepositoryLinkedList implements DicaRepository {
 		if (this.dicas.size() == 0) {
 			return new String[0];
 		}
+
 		String[] lista = new String[this.dicas.size()];
 		int i = 0;
 		for (Dica dica : dicas) {
 			lista[i++] = dica.exibeDetalhes();
 		}
+
 		return lista;
 	}
 
@@ -104,6 +107,12 @@ public class DicaRepositoryLinkedList implements DicaRepository {
 	 */
 	public Dica buscaDica(int posicao) {
 		ValidadorDica.validaPosicao(posicao, this.dicas.size());
+		if (posicao == 1)
+			return this.dicas.getFirst();
+
+		if (posicao == this.dicas.size())
+			return this.dicas.getLast();
+
 		return this.dicas.get(posicao - 1);
 	}
 }

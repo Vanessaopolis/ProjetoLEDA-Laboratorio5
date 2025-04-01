@@ -1,0 +1,8 @@
+collection time sample
+LinkedList 827140 50
+LinkedList 20300 150
+LinkedList 34733 450
+LinkedList 87856 1350
+LinkedList 222880 4050
+LinkedList 293140 12150
+LinkedList 827590 35450

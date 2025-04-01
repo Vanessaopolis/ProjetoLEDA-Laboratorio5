@@ -1,16 +1,14 @@
 package main;
 
+import java.io.PrintStream;
+
 public abstract class Main {
-	public static final int CARGA_USUARIO_INICIAL = 50;
-	public static final int CARGA_USUARIO_FINAL = 109350;
+	public static final int[] CARGAS = new int[] { 1_000, 10_000, 50_000, 100_000, 500_000, 1_000_000 };
 
-	// carga dividida em 2, pois cada usuário vai possuir 2 dicas
-	public static final int CARGA_DICA_INICIAL = CARGA_USUARIO_INICIAL / 2;
-	public static final int CARGA_DICA_FINAL = CARGA_USUARIO_FINAL / 2;
-
-	public static final int RAZAO = 3;
 	public static final int REPETICOES = 30;
 
-	public static final String HEADER = "EDA time sample";
+	public static final String HEADER = "collection time sample";
 	public static final String FILE_PATH = "data/usuariosModificados.txt";
+
+	public static final PrintStream CONSOLE_OUT = System.out;
 }

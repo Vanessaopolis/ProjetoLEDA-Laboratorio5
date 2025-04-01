@@ -12,7 +12,6 @@ import java.io.*;
 
 public class MainUsuarioOrdAlfabetica {
 	public static void main(String[] args) {
-
 		UsuarioRepository repoArrayList;
 		UsuarioRepository repoHashMap;
 		UsuarioRepository repoHashSet;
@@ -22,14 +21,12 @@ public class MainUsuarioOrdAlfabetica {
 
 		String caminhoArquivo = Main.FILE_PATH;
 
-		// lendo da entrada padrão
 		try {
 			PrintStream fileOut = new PrintStream("data/resultadoUsuarioOrdAlfabetica.txt");
 			System.setOut(fileOut);
-			// Cabeçalho
 			System.out.println(Main.HEADER);
 
-			for (int carga = Main.CARGA_USUARIO_INICIAL; carga <= Main.CARGA_USUARIO_FINAL; carga *= Main.RAZAO) {
+			for (int carga : Main.CARGAS) {
 				long tempoTotalAL = 0;
 				long tempoTotalHM = 0;
 				long tempoTotalHS = 0;
@@ -48,8 +45,6 @@ public class MainUsuarioOrdAlfabetica {
 					repoTreeSet = new UsuarioRepositoryTreeSet();
 
 					int linhaAtual = 0;
-
-					// adiciona os usuários para poder ordená-los
 					while (linhaAtual++ < carga) {
 						String line = reader.readLine();
 						String[] sequencia = line.split(" ");
@@ -58,7 +53,6 @@ public class MainUsuarioOrdAlfabetica {
 						String cpf = sequencia[1];
 						String senha = sequencia[2];
 						String matricula = sequencia[3];
-
 						Usuario user = new Usuario(nome, cpf, senha, matricula);
 
 						repoArrayList.adicionaEstudante(user);
@@ -68,6 +62,7 @@ public class MainUsuarioOrdAlfabetica {
 						repoTreeMap.adicionaEstudante(user);
 						repoTreeSet.adicionaEstudante(user);
 					}
+
 					reader.close();
 
 					tempoTotalAL += executaListagemOrdemAlfabetica(repoArrayList);
@@ -85,7 +80,6 @@ public class MainUsuarioOrdAlfabetica {
 				long mediaTM = tempoTotalTM / Main.REPETICOES;
 				long mediaTS = tempoTotalTS / Main.REPETICOES;
 
-				System.setOut(fileOut);
 				System.out.println("ArrayList " + mediaAL + " " + carga);
 				System.out.println("HashMap " + mediaHM + " " + carga);
 				System.out.println("HashSet " + mediaHS + " " + carga);
@@ -93,13 +87,15 @@ public class MainUsuarioOrdAlfabetica {
 				System.out.println("TreeMap " + mediaTM + " " + carga);
 				System.out.println("TreeSet " + mediaTS + " " + carga);
 			}
+
 			fileOut.close();
+			System.setOut(Main.CONSOLE_OUT);
 			System.out.println("Terminou");
 
 		} catch (IOException ioe) {
+			System.setOut(Main.CONSOLE_OUT);
 			System.out.println(ioe);
 		}
-
 	}
 
 	private static long executaListagemOrdemAlfabetica(UsuarioRepository usuarioRepository) {
@@ -108,5 +104,4 @@ public class MainUsuarioOrdAlfabetica {
 		long end = System.nanoTime();
 		return end - start;
 	}
-
 }

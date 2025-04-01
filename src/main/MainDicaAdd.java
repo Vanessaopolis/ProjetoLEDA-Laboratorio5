@@ -13,7 +13,6 @@ import repositories.DicaRepositoryTreeSet;
 
 public class MainDicaAdd {
 	public static void main(String[] args) {
-
 		DicaRepository repoArrayList;
 		DicaRepository repoDeque;
 		DicaRepository repoHashMap;
@@ -23,14 +22,14 @@ public class MainDicaAdd {
 
 		String caminhoArquivo = Main.FILE_PATH;
 
-		// lendo da entrada padrão
 		try {
 			PrintStream fileOut = new PrintStream("data/resultadoDicaAddTesteDeMudanca.txt");
 			System.setOut(fileOut);
-			// Cabeçalho
 			System.out.println(Main.HEADER);
 
-			for (int carga = Main.CARGA_DICA_INICIAL; carga <= Main.CARGA_DICA_FINAL; carga *= Main.RAZAO) {
+			for (int carga : Main.CARGAS) {
+				carga /= 2;
+
 				long tempoTotalAL = 0;
 				long tempoTotalDQ = 0;
 				long tempoTotalHM = 0;
@@ -49,7 +48,6 @@ public class MainDicaAdd {
 					repoTreeSet = new DicaRepositoryTreeSet();
 
 					int linhaAtual = 0;
-
 					while (linhaAtual++ < carga) {
 						String line = reader.readLine();
 						String[] sequencia = line.split(" ");
@@ -58,7 +56,6 @@ public class MainDicaAdd {
 						String cpf = sequencia[1];
 						String senha = sequencia[2];
 						String matricula = sequencia[3];
-
 						Usuario user = new Usuario(nome, cpf, senha, matricula);
 						Dica d1 = new Dica(user, "PesquisaExtensao");
 						Dica d2 = new Dica(user, "Monitoria");
@@ -70,6 +67,7 @@ public class MainDicaAdd {
 						tempoTotalLL += executaAdicao(repoLinkedList, d1, d2);
 						tempoTotalTS += executaAdicao(repoTreeSet, d1, d2);
 					}
+
 					reader.close();
 				}
 
@@ -80,18 +78,20 @@ public class MainDicaAdd {
 				long mediaLL = tempoTotalLL / Main.REPETICOES;
 				long mediaTS = tempoTotalTS / Main.REPETICOES;
 
-				// adiciona o resultado no arquivo de resultado
 				System.out.println("ArrayList " + mediaAL + " " + carga * 2);
 				System.out.println("Deque " + mediaDQ + " " + carga * 2);
-				System.out.println("HashSet " + mediaHM + " " + carga * 2);
+				System.out.println("HashMap " + mediaHM + " " + carga * 2);
 				System.out.println("LinkedHashMap " + mediaLHM + " " + carga * 2);
-				System.out.println("TreeMap " + mediaLL + " " + carga * 2);
+				System.out.println("LinkedList " + mediaLL + " " + carga * 2);
 				System.out.println("TreeSet " + mediaTS + " " + carga * 2);
 			}
+
 			fileOut.close();
+			System.setOut(Main.CONSOLE_OUT);
 			System.out.println("Terminou");
 
 		} catch (IOException ioe) {
+			System.setOut(Main.CONSOLE_OUT);
 			System.out.println(ioe);
 		}
 	}
@@ -103,5 +103,4 @@ public class MainDicaAdd {
 		long end = System.nanoTime();
 		return end - start;
 	}
-
 }

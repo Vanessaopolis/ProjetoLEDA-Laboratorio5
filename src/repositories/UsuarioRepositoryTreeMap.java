@@ -2,6 +2,7 @@ package repositories;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -19,13 +20,13 @@ import validators.ValidadorUsuario;
 
 public class UsuarioRepositoryTreeMap implements UsuarioRepository {
 
-	private Map<String, Usuario> estudantes;
+	private Map<Long, Usuario> estudantes;
 
 	/**
 	 * Cria um novo repositório de usuários.
 	 */
 	public UsuarioRepositoryTreeMap() {
-		this.estudantes = new TreeMap<>();
+		this.estudantes = new HashMap<>();
 	}
 
 	/**
@@ -39,12 +40,7 @@ public class UsuarioRepositoryTreeMap implements UsuarioRepository {
 	 */
 	public boolean adicionaEstudante(Usuario estudante) {
 		ValidadorUsuario.validaUsuario(estudante);
-
-		if (this.estudantes.containsKey(estudante.getCpf())) {
-			return false;
-		}
-		this.estudantes.put(estudante.getCpf(), estudante);
-		return true;
+		return this.estudantes.putIfAbsent(Long.parseLong(estudante.getCpf()), estudante) == null;
 	}
 
 	/**
@@ -59,11 +55,11 @@ public class UsuarioRepositoryTreeMap implements UsuarioRepository {
 		}
 
 		// Cria um novo TreeMap ordenado pelo nome
-		TreeMap<Usuario, String> estudantesOrdenadosAlfabeticamente = new TreeMap<>(
+		TreeMap<Usuario, Long> estudantesOrdenadosAlfabeticamente = new TreeMap<>(
 				Comparator.comparing(Usuario::getNome));
 
 		// Inverte o par (chave, valor) para usar Usuario como chave
-		for (Map.Entry<String, Usuario> entry : this.estudantes.entrySet()) {
+		for (Map.Entry<Long, Usuario> entry : this.estudantes.entrySet()) {
 			estudantesOrdenadosAlfabeticamente.put(entry.getValue(), entry.getKey());
 		}
 
@@ -82,11 +78,11 @@ public class UsuarioRepositoryTreeMap implements UsuarioRepository {
 		}
 
 		// Cria um novo TreeMap ordenado pela bonificação
-		TreeMap<Usuario, String> estudantesOrdenadosPelaBonificacao = new TreeMap<>(
+		TreeMap<Usuario, Long> estudantesOrdenadosPelaBonificacao = new TreeMap<>(
 				Comparator.comparing(Usuario::getBonificacao).reversed().thenComparing(Usuario::getNome));
 
 		// Inverte o par (chave, valor) para usar Usuario como chave
-		for (Map.Entry<String, Usuario> entry : this.estudantes.entrySet()) {
+		for (Map.Entry<Long, Usuario> entry : this.estudantes.entrySet()) {
 			estudantesOrdenadosPelaBonificacao.put(entry.getValue(), entry.getKey());
 		}
 
@@ -104,7 +100,7 @@ public class UsuarioRepositoryTreeMap implements UsuarioRepository {
 	 * @throws IllegalArgumentException se as credenciais forem inválidas
 	 */
 	public Usuario buscaEstudante(String cpf, String senha) {
-		Usuario estudanteProcurado = this.estudantes.get(cpf);
+		Usuario estudanteProcurado = this.estudantes.get(Long.parseLong(cpf));
 		ValidadorUsuario.validaUsuario(estudanteProcurado);
 		if (validaSenha(estudanteProcurado, senha)) {
 			return estudanteProcurado;
@@ -123,6 +119,7 @@ public class UsuarioRepositoryTreeMap implements UsuarioRepository {
 		for (T elemento : colecao) {
 			lista[i++] = elemento.toString();
 		}
+
 		return lista;
 	}
 }
