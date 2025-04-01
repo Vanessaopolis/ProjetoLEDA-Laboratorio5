@@ -42,7 +42,7 @@ public class MainDicaAdd {
 
 					repoArrayList = new DicaRepositoryArrayList();
 					repoDeque = new DicaRepositoryDeque();
-					repoHashMap = new DicaRepositoryHashMap();
+					repoHashMap = new DicaRepositoryHashMap((int) Math.ceil((carga * 2) / 0.75));
 					repoLinkedHashMap = new DicaRepositoryLinkedHashMap();
 					repoLinkedList = new DicaRepositoryLinkedList();
 					repoTreeSet = new DicaRepositoryTreeSet();
