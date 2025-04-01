@@ -111,9 +111,9 @@ O principal artefato será um relatório explicando as alterações nas estrutur
   - [x] Tarefa 5.1: Executar métodos e registrar tempos
   - [x] Tarefa 5.2: Calcular tempo médio de execução
 
-- [ ] **Etapa 6: Análise e Visualização dos Dados**
+- [x] **Etapa 6: Análise e Visualização dos Dados**
   - [x] Tarefa 6.1: Plotar gráficos comparativos
-  - [ ] Tarefa 6.2: Analisar resultados
+  - [x] Tarefa 6.2: Analisar resultados
 
 - [ ] **Etapa 7: Conclusão e Relatório Final**
   - [ ] Tarefa 7.1: Redigir relatório explicando modificações
