@@ -14,7 +14,7 @@ public class MainDosMains {
 		executaOutraClasse("MainUsuarioOrdBonus");
 
 		System.out.println();
-		System.out.println("Começando os testes para repositórios ded Dica...");
+		System.out.println("Começando os testes para repositórios de Dica...");
 		executaOutraClasse("MainDicaAdd");
 		executaOutraClasse("MainDicaBuscaMeio");
 		executaOutraClasse("MainDicaBuscaPrimeira");
@@ -24,7 +24,7 @@ public class MainDosMains {
 		System.out.println("Todos os testes terminaram!");
 
 	}
-
+	//TODO: ajustar processBuilder 
 	private static void executaOutraClasse(String nomeClasse) throws IOException, InterruptedException {
 		System.out.println("Iniciando execução de " + nomeClasse);
 		ProcessBuilder processBuilder = new ProcessBuilder("java", nomeClasse);
