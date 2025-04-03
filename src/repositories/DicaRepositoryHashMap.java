@@ -30,10 +30,6 @@ public class DicaRepositoryHashMap implements DicaRepository {
 		this.dicas = new HashMap<>();
 	}
 
-	public DicaRepositoryHashMap(int capacidadeInicial) {
-		this.dicas = new HashMap<>(capacidadeInicial);
-	}
-
 	/**
 	 * Adiciona uma dica ao repositório.
 	 *

@@ -24,15 +24,10 @@ public class MainUsuarioBusca {
 		String caminhoArquivo = Main.CAMINHO_ARQUIVO_DE_ENTRADA;
 
 		try {
-			PrintStream fileOut = new PrintStream(
-					"/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoUsuarioBusca.txt");
-			System.setOut(fileOut);
-			System.out.println(Main.CABECALHO);
+			String outputFinal = "";
 
 			for (int carga : Main.CARGAS) {
-				System.setOut(Main.CONSOLE_OUT);
 				System.out.println("main: " + main + ", começo da carga: " + carga);
-				System.setOut(fileOut);
 
 				long tempoTotalAL = 0;
 				long tempoTotalHM = 0;
@@ -42,9 +37,7 @@ public class MainUsuarioBusca {
 				long tempoTotalTS = 0;
 
 				for (int i = 0; i < Main.REPETICOES; i++) {
-					System.setOut(Main.CONSOLE_OUT);
 					System.out.println("main: " + main + ", carga: " + carga + ", repetição: " + (i + 1));
-					System.setOut(fileOut);
 
 					BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
 					String cpfASerBuscado = null;
@@ -93,24 +86,25 @@ public class MainUsuarioBusca {
 				long mediaTM = tempoTotalTM / Main.REPETICOES;
 				long mediaTS = tempoTotalTS / Main.REPETICOES;
 
-				System.out.println("ArrayList " + mediaAL + " " + carga);
-				System.out.println("HashMap " + mediaHM + " " + carga);
-				System.out.println("HashSet " + mediaHS + " " + carga);
-				System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
-				System.out.println("TreeMap " + mediaTM + " " + carga);
-				System.out.println("TreeSet " + mediaTS + " " + carga);
+				String outputDaCarga = "";
+				outputDaCarga += "ArrayList " + mediaAL + " " + carga + "\n";
+				outputDaCarga += "HashMap " + mediaHM + " " + carga + "\n";
+				outputDaCarga += "HashSet " + mediaHS + " " + carga + "\n";
+				outputDaCarga += "LinkedHashMap " + mediaLHM + " " + carga + "\n";
+				outputDaCarga += "TreeMap " + mediaTM + " " + carga + "\n";
+				outputDaCarga += "TreeSet " + mediaTS + " " + carga + "\n";
 
-				System.setOut(Main.CONSOLE_OUT);
+				outputFinal += outputDaCarga;
 				System.out.println("carga concluída: " + carga);
-				System.setOut(fileOut);
 			}
 
-			fileOut.close();
-			System.setOut(Main.CONSOLE_OUT);
+			BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoUsuarioBusca.txt"));			
+			writer.write(outputFinal = Main.CABECALHO + outputFinal);
+			writer.close();
+
 			System.out.println("Terminou");
 
 		} catch (IOException ioe) {
-			System.setOut(Main.CONSOLE_OUT);
 			System.out.println(ioe);
 		}
 	}

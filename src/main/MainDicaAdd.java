@@ -25,15 +25,11 @@ public class MainDicaAdd {
 		String caminhoArquivo = Main.CAMINHO_ARQUIVO_DE_ENTRADA;
 
 		try {
-			PrintStream fileOut = new PrintStream("/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoDicaAdd.txt");
-			System.setOut(fileOut);
-			System.out.println(Main.CABECALHO);
+			String outputFinal = "";
 
 			for (int carga : Main.CARGAS) {
-				System.setOut(Main.CONSOLE_OUT);
-				System.out.println("main: " + main + ", começo da carga: " + carga);
-				System.setOut(fileOut);
-
+				System.out.println("main: " + main + ", começo da carga: " + carga); //controle de execução
+	
 				int cargaDica = carga / 2;
 
 				long tempoTotalAL = 0;
@@ -44,15 +40,14 @@ public class MainDicaAdd {
 				long tempoTotalTS = 0;
 
 				for (int i = 0; i < Main.REPETICOES; i++) {
-					System.setOut(Main.CONSOLE_OUT);
-					System.out.println("main: " + main + ", carga: " + carga + ", repetição: " + (i + 1));
-					System.setOut(fileOut);
+			
+					System.out.println("main: " + main + ", carga: " + carga + ", repetição: " + (i + 1)); //controle de execução
 
 					BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
 
 					repoArrayList = new DicaRepositoryArrayList();
 					repoDeque = new DicaRepositoryDeque();
-					repoHashMap = new DicaRepositoryHashMap((int) Math.ceil(carga / 0.75));
+					repoHashMap = new DicaRepositoryHashMap();
 					repoLinkedHashMap = new DicaRepositoryLinkedHashMap();
 					repoLinkedList = new DicaRepositoryLinkedList();
 					repoTreeSet = new DicaRepositoryTreeSet();
@@ -86,24 +81,27 @@ public class MainDicaAdd {
 				long mediaLL = tempoTotalLL / Main.REPETICOES;
 				long mediaTS = tempoTotalTS / Main.REPETICOES;
 
-				System.out.println("ArrayList " + mediaAL + " " + carga);
-				System.out.println("Deque " + mediaDQ + " " + carga);
-				System.out.println("HashMap " + mediaHM + " " + carga);
-				System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
-				System.out.println("LinkedList " + mediaLL + " " + carga);
-				System.out.println("TreeSet " + mediaTS + " " + carga);
-				
-				System.setOut(Main.CONSOLE_OUT);
+				String outputDaCarga = "";
+				outputDaCarga += "ArrayList " + mediaAL + " " + carga + "\n";
+				outputDaCarga += "Deque " + mediaDQ + " " + carga + "\n";
+				outputDaCarga += "HashMap " + mediaHM + " " + carga + "\n";
+				outputDaCarga += "LinkedHashMap " + mediaLHM + " " + carga + "\n";
+				outputDaCarga += "LinkedList " + mediaLL + " " + carga + "\n";
+				outputDaCarga += "TreeSet " + mediaTS + " " + carga + "\n";
+
+				outputFinal += outputDaCarga;
+
 				System.out.println("carga concluída: " + carga);
-				System.setOut(fileOut);
+			
 			}
 
-			fileOut.close();
-			System.setOut(Main.CONSOLE_OUT);
+			BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoDicaAdd.txt"));			
+			writer.write(outputFinal = Main.CABECALHO + outputFinal);
+			writer.close();
+
 			System.out.println("Terminou");
 
 		} catch (IOException ioe) {
-			System.setOut(Main.CONSOLE_OUT);
 			System.out.println(ioe);
 		}
 	}
