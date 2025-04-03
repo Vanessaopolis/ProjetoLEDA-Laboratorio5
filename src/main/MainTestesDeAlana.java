@@ -15,13 +15,13 @@ public class MainTestesDeAlana {
 
 		DicaRepository repoLinkedList;
 
-		String caminhoArquivo = Main.FILE_PATH;
+		String caminhoArquivo = Main.CAMINHO_ARQUIVO_DE_ENTRADA;
 		// lendo da entrada padrão
 		try {
 			PrintStream fileOut = new PrintStream("data/testes_de_alana/testeDeAlanaDicaBuscaUltimaWithGetLast.txt");
 			System.setOut(fileOut);
 			// Cabeçalho
-			System.out.println(Main.HEADER);
+			System.out.println(Main.CABECALHO);
 
 			for (int carga = 25; carga <= 18225; carga *= 3) {
 				long tempoTotalLL = 0;
@@ -72,7 +72,7 @@ public class MainTestesDeAlana {
 
 	private static long executaBusca(DicaRepository dicaRepository, int carga) {
 		long start = System.nanoTime();
-		Dica dica = dicaRepository.buscaDica(carga * 2);
+		dicaRepository.buscaDica(carga * 2);
 		long end = System.nanoTime();
 		return end - start;
 	}

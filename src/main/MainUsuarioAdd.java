@@ -12,6 +12,8 @@ import java.io.*;
 
 public class MainUsuarioAdd {
 	public static void main(String[] args) {
+		String main = "MainUsuarioAdd";
+
 		UsuarioRepository repoArrayList;
 		UsuarioRepository repoHashMap;
 		UsuarioRepository repoHashSet;
@@ -19,14 +21,18 @@ public class MainUsuarioAdd {
 		UsuarioRepository repoTreeMap;
 		UsuarioRepository repoTreeSet;
 
-		String caminhoArquivo = Main.FILE_PATH;
+		String caminhoArquivo = Main.CAMINHO_ARQUIVO_DE_ENTRADA;
 
 		try {
 			PrintStream fileOut = new PrintStream("/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoUsuarioAdd.txt");
 			System.setOut(fileOut);
-			System.out.println(Main.HEADER);
+			System.out.println(Main.CABECALHO);
 
 			for (int carga : Main.CARGAS) {
+				System.setOut(Main.CONSOLE_OUT);
+				System.out.println("main: " + main + ", começo da carga: " + carga);
+				System.setOut(fileOut);
+
 				long tempoTotalAL = 0;
 				long tempoTotalHM = 0;
 				long tempoTotalHS = 0;
@@ -35,6 +41,10 @@ public class MainUsuarioAdd {
 				long tempoTotalTS = 0;
 
 				for (int i = 0; i < Main.REPETICOES; i++) {
+					System.setOut(Main.CONSOLE_OUT);
+					System.out.println("main: " + main + ", carga: " + carga + ", repetição: " + (i + 1));
+					System.setOut(fileOut);
+
 					BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
 
 					repoArrayList = new UsuarioRepositoryArrayList();
@@ -51,9 +61,7 @@ public class MainUsuarioAdd {
 
 						String nome = dados[0];
 						String cpf = dados[1];
-						String senha = dados[2];
-						String matricula = dados[3];
-						Usuario user = new Usuario(nome, cpf, senha, matricula);
+						Usuario user = new Usuario(nome, cpf, Main.SENHA, Main.MATRICULA);
 
 						tempoTotalAL += executaAdicao(repoArrayList, user);
 						tempoTotalHM += executaAdicao(repoHashMap, user);
@@ -80,6 +88,10 @@ public class MainUsuarioAdd {
 				System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
 				System.out.println("TreeMap " + mediaTM + " " + carga);
 				System.out.println("TreeSet " + mediaTS + " " + carga);
+
+				System.setOut(Main.CONSOLE_OUT);
+				System.out.println("carga concluída: " + carga);
+				System.setOut(fileOut);
 			}
 
 			fileOut.close();

@@ -11,23 +11,22 @@ public class MainDosMains {
 		executaOutraClasse("MainUsuarioBusca");
 		executaOutraClasse("MainUsuarioOrdAlfabetica");
 		executaOutraClasse("MainUsuarioOrdBonus");
-
 		System.out.println();
+
 		System.out.println("Começando os testes para repositórios de Dica...");
 		executaOutraClasse("MainDicaAdd");
 		executaOutraClasse("MainDicaBuscaMeio");
 		executaOutraClasse("MainDicaBuscaPrimeira");
 		executaOutraClasse("MainDicaBuscaUltima");
-
 		System.out.println();
+
 		System.out.println("Todos os testes terminaram!");
 
 	}
 
 	private static void executaOutraClasse(String nomeClasse) throws IOException, InterruptedException {
 		System.out.println("Iniciando execução de " + nomeClasse);
-		ProcessBuilder processBuilder = new ProcessBuilder("java", "-cp",
-				"/home/ubuntu/ProjetoLEDA-Laboratorio5/src",
+		ProcessBuilder processBuilder = new ProcessBuilder("java", "-cp", "/home/ubuntu/ProjetoLEDA-Laboratorio5/src",
 				"main." + nomeClasse);
 		processBuilder.inheritIO();
 		Process process = processBuilder.start();

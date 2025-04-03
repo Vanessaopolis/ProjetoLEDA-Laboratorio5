@@ -13,6 +13,8 @@ import java.io.*;
 
 public class MainDicaBuscaPrimeira {
 	public static void main(String[] args) {
+		String main = "MainDicaBuscaPrimeira";
+
 		DicaRepository repoArrayList;
 		DicaRepository repoDeque;
 		DicaRepository repoHashMap;
@@ -20,15 +22,19 @@ public class MainDicaBuscaPrimeira {
 		DicaRepository repoLinkedList;
 		DicaRepository repoTreeSet;
 
-		String caminhoArquivo = Main.FILE_PATH;
+		String caminhoArquivo = Main.CAMINHO_ARQUIVO_DE_ENTRADA;
 
 		try {
 			PrintStream fileOut = new PrintStream("/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoDicaBuscaPrimeira.txt");
 			System.setOut(fileOut);
-			System.out.println(Main.HEADER);
+			System.out.println(Main.CABECALHO);
 
 			for (int carga : Main.CARGAS) {
-				carga /= 2;
+				System.setOut(Main.CONSOLE_OUT);
+				System.out.println("main: " + main + ", começo da carga: " + carga);
+				System.setOut(fileOut);
+
+				int cargaDica = carga / 2;
 
 				long tempoTotalAL = 0;
 				long tempoTotalDQ = 0;
@@ -38,25 +44,27 @@ public class MainDicaBuscaPrimeira {
 				long tempoTotalTS = 0;
 
 				for (int i = 0; i < Main.REPETICOES; i++) {
+					System.setOut(Main.CONSOLE_OUT);
+					System.out.println("main: " + main + ", carga: " + carga + ", repetição: " + (i + 1));
+					System.setOut(fileOut);
+
 					BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
 
 					repoArrayList = new DicaRepositoryArrayList();
 					repoDeque = new DicaRepositoryDeque();
-					repoHashMap = new DicaRepositoryHashMap((int) Math.ceil((carga * 2) / 0.75));
+					repoHashMap = new DicaRepositoryHashMap((int) Math.ceil(carga / 0.75));
 					repoLinkedHashMap = new DicaRepositoryLinkedHashMap();
 					repoLinkedList = new DicaRepositoryLinkedList();
 					repoTreeSet = new DicaRepositoryTreeSet();
 
 					int linhaAtual = 0;
-					while (linhaAtual++ < carga) {
+					while (linhaAtual++ < cargaDica) {
 						String line = reader.readLine();
 						String[] sequencia = line.split(" ");
 
 						String nome = sequencia[0];
 						String cpf = sequencia[1];
-						String senha = sequencia[2];
-						String matricula = sequencia[3];
-						Usuario user = new Usuario(nome, cpf, senha, matricula);
+						Usuario user = new Usuario(nome, cpf, Main.SENHA, Main.MATRICULA);
 						Dica d1 = new Dica(user, "PesquisaExtensao");
 						Dica d2 = new Dica(user, "Monitoria");
 
@@ -97,12 +105,16 @@ public class MainDicaBuscaPrimeira {
 				long mediaLL = tempoTotalLL / Main.REPETICOES;
 				long mediaTS = tempoTotalTS / Main.REPETICOES;
 
-				System.out.println("ArrayList " + mediaAL + " " + carga * 2);
-				System.out.println("Deque " + mediaDQ + " " + carga * 2);
-				System.out.println("HashMap " + mediaHM + " " + carga * 2);
-				System.out.println("LinkedHashMap " + mediaLHM + " " + carga * 2);
-				System.out.println("LinkedList " + mediaLL + " " + carga * 2);
-				System.out.println("TreeSet " + mediaTS + " " + carga * 2);
+				System.out.println("ArrayList " + mediaAL + " " + carga);
+				System.out.println("Deque " + mediaDQ + " " + carga);
+				System.out.println("HashMap " + mediaHM + " " + carga);
+				System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
+				System.out.println("LinkedList " + mediaLL + " " + carga);
+				System.out.println("TreeSet " + mediaTS + " " + carga);
+				
+				System.setOut(Main.CONSOLE_OUT);
+				System.out.println("carga concluída: " + carga);
+				System.setOut(fileOut);
 			}
 
 			fileOut.close();
@@ -117,7 +129,7 @@ public class MainDicaBuscaPrimeira {
 
 	private static long executaBusca(DicaRepository dicaRepository, int posicao) {
 		long start = System.nanoTime();
-		Dica dica = dicaRepository.buscaDica(posicao);
+		dicaRepository.buscaDica(posicao);
 		long end = System.nanoTime();
 		return end - start;
 	}

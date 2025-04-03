@@ -12,6 +12,8 @@ import java.io.*;
 
 public class MainUsuarioBusca {
 	public static void main(String[] args) {
+		String main = "MainUsuarioBusca";
+
 		UsuarioRepository repoArrayList;
 		UsuarioRepository repoHashMap;
 		UsuarioRepository repoHashSet;
@@ -19,14 +21,19 @@ public class MainUsuarioBusca {
 		UsuarioRepository repoTreeMap;
 		UsuarioRepository repoTreeSet;
 
-		String caminhoArquivo = Main.FILE_PATH;
+		String caminhoArquivo = Main.CAMINHO_ARQUIVO_DE_ENTRADA;
 
 		try {
-			PrintStream fileOut = new PrintStream("/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoUsuarioBusca.txt");
+			PrintStream fileOut = new PrintStream(
+					"/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoUsuarioBusca.txt");
 			System.setOut(fileOut);
-			System.out.println(Main.HEADER);
+			System.out.println(Main.CABECALHO);
 
 			for (int carga : Main.CARGAS) {
+				System.setOut(Main.CONSOLE_OUT);
+				System.out.println("main: " + main + ", começo da carga: " + carga);
+				System.setOut(fileOut);
+
 				long tempoTotalAL = 0;
 				long tempoTotalHM = 0;
 				long tempoTotalHS = 0;
@@ -35,6 +42,10 @@ public class MainUsuarioBusca {
 				long tempoTotalTS = 0;
 
 				for (int i = 0; i < Main.REPETICOES; i++) {
+					System.setOut(Main.CONSOLE_OUT);
+					System.out.println("main: " + main + ", carga: " + carga + ", repetição: " + (i + 1));
+					System.setOut(fileOut);
+
 					BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo));
 					String cpfASerBuscado = null;
 
@@ -52,9 +63,7 @@ public class MainUsuarioBusca {
 
 						String nome = sequencia[0];
 						String cpf = sequencia[1];
-						String senha = sequencia[2];
-						String matricula = sequencia[3];
-						Usuario user = new Usuario(nome, cpf, senha, matricula);
+						Usuario user = new Usuario(nome, cpf, Main.SENHA, Main.MATRICULA);
 
 						repoArrayList.adicionaEstudante(user);
 						repoHashMap.adicionaEstudante(user);
@@ -90,6 +99,10 @@ public class MainUsuarioBusca {
 				System.out.println("LinkedHashMap " + mediaLHM + " " + carga);
 				System.out.println("TreeMap " + mediaTM + " " + carga);
 				System.out.println("TreeSet " + mediaTS + " " + carga);
+
+				System.setOut(Main.CONSOLE_OUT);
+				System.out.println("carga concluída: " + carga);
+				System.setOut(fileOut);
 			}
 
 			fileOut.close();
@@ -104,7 +117,7 @@ public class MainUsuarioBusca {
 
 	private static long executaBusca(UsuarioRepository usuarioRepository, String cpf) {
 		long start = System.nanoTime();
-		Usuario usuario = usuarioRepository.buscaEstudante(cpf, "senha123");
+		usuarioRepository.buscaEstudante(cpf, Main.SENHA);
 		long end = System.nanoTime();
 		return end - start;
 	}
