@@ -57,39 +57,6 @@ O principal artefato será um relatório explicando as alterações nas estrutur
 
 ## 3. Planejamento e Andamento
 
-###  - [x] Etapa 1: Análise e Identificação das Estruturas de Dados
-- - [x] **Tarefa 1.1**: Revisar o último laboratório da disciplina anterior e identificar as estruturas de dados utilizadas.
-- **Tarefa 1.2**: Listar os métodos que interagem com essas estruturas (busca, ordenação, inserção, etc.).
-- **Tarefa 1.3**: Compreender como as estruturas e métodos estão implementados e qual a função de cada uma no código.
-
-### Etapa 2: Modificação das Estruturas de Dados
-- **Tarefa 2.1**: Alterar as estruturas de dados identificadas na etapa anterior.
-- **Tarefa 2.2**: Adaptar os métodos existentes para funcionarem corretamente com as novas estruturas de dados.
-
-### Etapa 3: Garantia de Funcionamento Através de Testes
-- **Tarefa 3.1**: Criar e atualizar testes unitários para verificar se os métodos continuam funcionando corretamente após as modificações.
-- **Tarefa 3.2**: Executar os testes unitários e corrigir quaisquer erros encontrados, garantindo que o código esteja robusto e confiável.
-
-### Etapa 4: Definição de Entradas Controladas
-- **Tarefa 4.1**: Escolher casos de teste representativos para os métodos de interesse (busca, ordenação, inserção).
-- **Tarefa 4.2**: Gerar por script entradas controladas para esses métodos, com tamanhos variados, para realizar as medições de tempo de execução.
-
-### Etapa 5: Execução e Coleta de Dados
-- **Tarefa 5.1**: Executar os métodos escolhidos múltiplas vezes com as entradas controladas definidas, registrando os tempos de execução para cada execução.
-- **Tarefa 5.2**: Calcular o tempo médio de execução para cada teste e para cada estrutura de dados.
-
-### Etapa 6: Análise e Visualização dos Dados
-- **Tarefa 6.1**: Plotar gráficos comparando os tempos médios de execução com diferentes entradas e diferentes estruturas de dados.
-- **Tarefa 6.2**: Analisar os gráficos e os resultados para observar como as diferentes estruturas impactam o desempenho dos métodos (busca, ordenação, inserção).
-
-### Etapa 7: Conclusão e Relatório Final
-- **Tarefa 7.1**: Redigir o relatório explicando as modificações feitas nas estruturas de dados e como isso impactou os métodos.
-- **Tarefa 7.2**: Incluir no relatório uma análise comparativa do desempenho das diferentes estruturas de dados, com base nos gráficos gerados e nas conclusões dos experimentos.
-- **Tarefa 7.3**: Revisar e finalizar o relatório para entrega, garantindo que esteja claro, bem estruturado e bem documentado.
-
-## 4. Andamento
-
-### Status das Etapas:
 - [x] **Etapa 1: Análise e Identificação das Estruturas de Dados**
   - [x] Tarefa 1.1: Revisar o laboratório anterior
   - [x] Tarefa 1.2: Listar os métodos que interagem com as estruturas
