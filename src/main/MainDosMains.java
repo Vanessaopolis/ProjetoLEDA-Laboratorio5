@@ -27,7 +27,7 @@ public class MainDosMains {
 	private static void executaOutraClasse(String nomeClasse) throws IOException, InterruptedException {
 		System.out.println("Iniciando execução de " + nomeClasse);
 		ProcessBuilder processBuilder = new ProcessBuilder("java", "-cp",
-				"D:/ufcg/graduação Ciência da Computação/2024.2/Laboratório de Estruturas de Dados e Algoritmos/Projeto/ProjetoLEDA-Laboratorio5/src",
+				"/home/ubuntu/ProjetoLEDA-Laboratorio5/src",
 				"main." + nomeClasse);
 		processBuilder.inheritIO();
 		Process process = processBuilder.start();

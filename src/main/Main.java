@@ -8,7 +8,7 @@ public abstract class Main {
 	public static final int REPETICOES = 30;
 
 	public static final String HEADER = "collection time(ns) sample";
-	public static final String FILE_PATH = "data/usuariosModificados.txt";
+	public static final String FILE_PATH = "/home/ubuntu/ProjetoLEDA-Laboratorio5/data/usuariosModificados.txt";
 
 	public static final PrintStream CONSOLE_OUT = System.out;
 }

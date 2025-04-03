@@ -22,7 +22,7 @@ public class MainUsuarioAdd {
 		String caminhoArquivo = Main.FILE_PATH;
 
 		try {
-			PrintStream fileOut = new PrintStream("data/resultadoUsuarioAdd.txt");
+			PrintStream fileOut = new PrintStream("/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoUsuarioAdd.txt");
 			System.setOut(fileOut);
 			System.out.println(Main.HEADER);
 

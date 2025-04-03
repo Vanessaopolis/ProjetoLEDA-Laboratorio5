@@ -23,7 +23,7 @@ public class MainDicaBuscaUltima {
 		String caminhoArquivo = Main.FILE_PATH;
 
 		try {
-			PrintStream fileOut = new PrintStream("data/resultadoDicaBuscaUltima.txt");
+			PrintStream fileOut = new PrintStream("/home/ubuntu/ProjetoLEDA-Laboratorio5/data/resultadoDicaBuscaUltima.txt");
 			System.setOut(fileOut);
 			System.out.println(Main.HEADER);
 
