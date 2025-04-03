@@ -9,6 +9,7 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+.pydevproject
 
 # Package Files #
 *.jar
@@ -25,5 +26,6 @@ replay_pid*
 
 # IDEs
 .classpath
+.idea/
 .settings/
 bin/
