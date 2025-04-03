@@ -55,10 +55,10 @@ Este estudo é relevante porque permite avaliar o impacto de diferentes estrutur
 
 O principal artefato será um relatório explicando as alterações nas estruturas de dados e os métodos impactados. O relatório também incluirá uma descrição dos experimentos realizados, metodologia de testes e os gráficos comparativos gerados com os tempos médios de execução. Por fim, o relatório concluirá com uma análise sobre o desempenho das diferentes estruturas, fornecendo recomendações sobre a escolha das mais eficientes para cada tipo de operação.
 
-## 3. Planejamento
+## 3. Planejamento e Andamento
 
-### Etapa 1: Análise e Identificação das Estruturas de Dados
-- **Tarefa 1.1**: Revisar o último laboratório da disciplina anterior e identificar as estruturas de dados utilizadas.
+###- [x] Etapa 1: Análise e Identificação das Estruturas de Dados
+- - [x] **Tarefa 1.1**: Revisar o último laboratório da disciplina anterior e identificar as estruturas de dados utilizadas.
 - **Tarefa 1.2**: Listar os métodos que interagem com essas estruturas (busca, ordenação, inserção, etc.).
 - **Tarefa 1.3**: Compreender como as estruturas e métodos estão implementados e qual a função de cada uma no código.
 
