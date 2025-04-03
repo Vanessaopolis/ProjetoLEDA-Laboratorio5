@@ -4,7 +4,7 @@ import seaborn as sns
 
 
 def gerar_grafico(arquivo_de_entrada: str, titulo_do_grafico: str) -> None:
-	# Define os arquivos de saída e do gráfico
+    # Define os arquivos de saída e do gráfico
     arquivo_de_saida = f"copia_{arquivo_de_entrada}"
     arquivo_do_grafico = f"{arquivo_de_entrada.split('.')[0]}.png"
 
