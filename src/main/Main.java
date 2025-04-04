@@ -2,8 +2,8 @@ package main;
 
 import java.io.PrintStream;
 
-public abstract class Main {
-	public static final int[] CARGAS = new int[] {100, 500};//{ 1_000, 10_000, 50_000, 100_000, 500_000, 1_000_000 };
+public abstract class Main {//{100, 500, 1000, 5000};
+	public static final int[] CARGAS = new int[] {1_000, 10_000, 50_000, 100_000, 500_000, 1_000_000 };
 
 	public static final int REPETICOES = 30;
 
