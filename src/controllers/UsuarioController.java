@@ -1,7 +1,7 @@
 package controllers;
 
 import entities.Usuario;
-import repositories.UsuarioRepositoryHashMap;
+import repositories.repositoriesUsuario.UsuarioRepositoryHashMap;
 
 /**
  * Classe responsável por gerenciar as interações entre os usuários externos e o

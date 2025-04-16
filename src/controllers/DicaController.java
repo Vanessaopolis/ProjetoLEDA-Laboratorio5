@@ -2,7 +2,7 @@ package controllers;
 
 import entities.Dica;
 import entities.Usuario;
-import repositories.DicaRepositoryArrayList;
+import repositories.repositoriesDica.DicaRepositoryArrayList;
 
 /**
  * Classe responsável por gerenciar as interações entre os usuários externos e o repositório de dicas.

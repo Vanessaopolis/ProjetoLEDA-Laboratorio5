@@ -1,8 +1,0 @@
-collection time(ns) sample
-TreeMap 423730 50
-TreeMap 146686 150
-TreeMap 306113 450
-TreeMap 644436 1350
-TreeMap 1574286 4050
-TreeMap 4928036 12150
-TreeMap 20808303 36450

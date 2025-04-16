@@ -12,4 +12,6 @@ public interface UsuarioRepository {
 
 	public Usuario buscaEstudante(String cpf, String senha);
 
+	//public boolean remove(Usuario usuario);
+
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import entities.Usuario;
+import java.util.NoSuchElementException;
 
 public class UsuarioRepositoryTest {
 
@@ -230,4 +231,24 @@ public class UsuarioRepositoryTest {
 		assertEquals("Nome: Ciclano, matrícula 123456987", lista[1]);
 		assertEquals("Nome: Fulano, matrícula 123456789", lista[2]);
 	}
+
+	/*
+	@Test
+	void testRemoveUsuario(){
+		Usuario u1 = new Usuario("Fulano", "12345678900", "1234", "123456789");
+		this.usuarioRepositoryLinkedHashMap = new UsuarioRepositoryLinkedHashMap();
+		assertTrue(this.usuarioRepositoryLinkedHashMap.adicionaEstudante(u1));
+	}
+	
+	@Test
+	void testRemoveUsuarioInexistente(){
+		try {
+			Usuario u1 = new Usuario("Fulano", "12345678900", "1234", "123456789");
+			this.usuarioRepositoryLinkedHashMap = new UsuarioRepositoryLinkedHashMap();
+			this.usuarioRepositoryLinkedHashMap.remove(u1);
+		} catch (NoSuchElementException e) {
+			assertEquals("Usuario não existe!", e.getMessage());
+		}
+	}
+	*/
 }
