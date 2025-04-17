@@ -7,6 +7,9 @@
 - Lorena Nascimento Carvalho - 123211071
 - Lukas Soares Nascimento - 123210298
 
+- Este projeto analítico foi parte da avaliação final da disciplina Estrutura de Dados - Ciência da Computação, UFCG (2024.2)
+- Avaliado com nota máxima (10)! 
+
 ## 1. Resumo
 
 O projeto consiste em aprimorar um laboratório realizado em uma disciplina anterior, Laboratório de Programação II, focando no último, o [Laboratório 5](https://docs.google.com/document/d/1HD3mytjwB-q8TqiEQGKULr6fQ81_MaUPekZpOaBofBI/edit?tab=t.0). A proposta é alterar as estruturas de dados utilizadas nesse laboratório, modificando os métodos e funcionalidades que interagem com elas, de modo a observar o impacto dessas mudanças no desempenho do programa. Para isso, será feito um estudo sobre as diferentes estruturas de dados e como elas afetam o funcionamento do código.
